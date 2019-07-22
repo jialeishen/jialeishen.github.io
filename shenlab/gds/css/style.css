@@ -1,0 +1,52 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-size: 20px;
+	font-family: Arial, Helvetic, sans-sertif;
+	/*text-align: center;*/
+}
+
+#canvas{
+
+	/*border: 2px solid black;*/
+	/*margin: 50px;*/
+
+
+}
+
+#main-header{
+	text-align: left;
+	/*font-size: 30px;*/
+	font-weight: bold;
+	
+}
+
+.button{
+	color: white;
+	/*background-color: #4CAF50;*/
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+}
+
+#pink{
+	background-color: hotpink;
+	/*color: white;*/
+}
+
+#blue{
+	background-color: skyblue;
+	/*color: white;*/
+}
+
+#downloadButton{
+	background-color: #333;
+}
+

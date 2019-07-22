@@ -1,81 +1,104 @@
-body{
-	background-color: #f4f4f4;
-	color: #555;
-	font-family: Arial, Helvetica, sans-sertif;
-	font-size: 16px;
-	line-height: 1.6em;
-	margin:0;
+body
+{
+    font-family: Arial, Helvetica, sans-sertif;
+    font-size: 16px;
+    line-height: 1.6em;
+
+    margin: 0;
+
+    color: #555;
+    background-color: #f4f4f4;
 }
 
-.container{
-	width:80%;
-	margin: auto;
-	overflow: hidden;
+.container
+{
+    overflow: hidden;
+
+    width: 80%;
+    margin: auto;
 }
 
-#main-header{
-	background-color: #117FEDFF;
-	color: #fff;
-	padding-top: 1em;	
-	/*padding-bottom: 0px;*/
+#main-header
+{
+    padding-top: 1em;
+
+    color: #fff;
+    background-color: #117fedff;
+    /*padding-bottom: 0px;*/
 }
 
-#navbar{
-	background-color: #123456FF;
-	color: #fff;
-
+#navbar
+{
+    color: #fff;
+    background-color: #123456ff;
 }
 
-#navbar ul{
-	padding: 0;
-	list-style: none;
+#navbar ul
+{
+    padding: 0;
+
+    list-style: none;
 }
 
-#navbar li{
-	display: inline;
-
+#navbar li
+{
+    display: inline;
 }
 
-#navbar a{
-	font-weight: bold;
-	color: #fff;
-	text-decoration: none;
-	font-size: 18px;
-	padding-right: 15px;
+#navbar a
+{
+    font-size: 18px;
+    font-weight: bold;
+
+    padding-right: 15px;
+
+    text-decoration: none;
+
+    color: #fff;
 }
 
-#navbar a:hover{
-	color: #ffffff77;
+#navbar a:hover
+{
+    color: #fff77;
 }
 
-#navbar a:visited{
-	color: #fff;
+#navbar a:visited
+{
+    color: #fff;
 }
 
-#navbar a:active{
-	color: #ffffff33;
+#navbar a:active
+{
+    color: #fff33;
 }
 
-#introduction{
-	font-weight: bold;
-	/*font-size: 18px;*/
+#introduction
+{
+    font-weight: bold;
+    /*font-size: 18px;*/
 }
 
 
-#detail a{
-	text-decoration: none;
-	color: #555;
-	font-size: 25px;
+#detail a
+{
+    font-size: 25px;
+
+    text-decoration: none;
+
+    color: #555;
 }
 
-#main-footer{
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	background-color: #123456FF;
-	color: #fff;
-	text-align: center;
-	margin-top: 40px;
-}
+#main-footer
+{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
 
+    margin-top: 40px;
+
+    text-align: center;
+
+    color: #fff;
+    background-color: #123456ff;
+}
