@@ -45,7 +45,15 @@ body{
 }
 
 #navbar a:hover{
-	color: #ffffff66;
+	color: #ffffff77;
+}
+
+#navbar a:visited{
+	color: #fff;
+}
+
+#navbar a:active{
+	color: #ffffff33;
 }
 
 #introduction{
