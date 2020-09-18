@@ -139,7 +139,7 @@ div[slider] > input[type=range]::-ms-fill-upper {
 div[slider] > input[type=range]::-ms-tooltip {
   display: none;
 }
-/* 
+
 [slider] > div > [sign] {
   opacity: 0;
   position: absolute;
@@ -179,4 +179,4 @@ div[slider] > input[type=range]::-ms-tooltip {
 
 [slider]:hover > div > [sign] {
   opacity: 1;
-} */
+}

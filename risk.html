@@ -151,17 +151,33 @@
                             </optgroup>
                         </select>
                     </div>
+                    
+                </div>
+                <div class="w3-row-padding" style="margin:8px -16px;">
                     <div class="w3-half w3-margin-bottom">
                         <label for="roomArea"><i class="fal fa-cube"></i> Area (m<sup>2</sup>)</label>
                         <input class="w3-input w3-border" type="number" value="100" min="0" name="roomArea" id="roomArea" required>
                     </div>
-                </div>
-                <div class="w3-row-padding" style="margin:8px -16px;">
                     <div class="w3-half w3-margin-bottom">
                         <label for="roomHeight"><i class="fal fa-ruler-vertical"></i> Height (m)</label>
                         <input class="w3-input w3-border" type="number" value="3" min="0" name="roomHeight" id="roomHeight" required>
                     </div>
                     
+                </div>
+                <div class="w3-row-padding" style="margin:8px -16px;">
+                    
+                    <div class="w3-half w3-margin-bottom">
+                        <label for="roomConfiguration"><i class="fal fa-fan-table"></i> Room configuration</label>
+                        <select class="w3-select w3-border" name="roomConfiguration" id="roomConfiguration" oninput="SetRoomConfiguration()" required>
+                            <option value="open" selected>Open space</option>
+                            <option value="semiopen">Semi-open space</option>
+                            
+                        </select>
+                    </div>
+                    <div class="w3-half w3-margin-bottom">
+                        <label for="ventEffRoomConfiguration"><i class="fal fa-leaf"></i> Ventilation efficiency</label>
+                        <input class="w3-input w3-border" type="number" value="1" min="0" name="ventEffRoomConfiguration" id="ventEffRoomConfiguration" required>
+                    </div>
                 </div>
             </div>
         </div>
@@ -276,6 +292,43 @@
                         <input class="w3-input w3-border" type="number" value="1" min="0" name="ventEff" id="ventEff" required>
                     </div>
                 </div>
+                <div class="w3-row-padding" style="margin:8px -16px;">
+                    
+                    <div class="w3-half w3-margin-bottom">
+                        <label for="hvacFrac"><i class="fal fa-clock"></i> Operation duration (%)</label>
+                        <!-- <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required> -->
+                        <div slider>
+                            <div>
+                                <div inverse-left style="width:100%;"></div>
+                                <!-- <div inverse-right style="width:80%;"></div> -->
+                                <div range style="left:0%;right:100%;"></div>
+                                <span thumb style="left:0%;"></span>
+                                <!-- <span thumb style="left:50%;"></span> -->
+                                <div sign style="left:0%;">
+                                  <span id="value">0</span>
+                                </div>
+                                <!-- <div sign style="left:50%;" hidden>
+                                  <span id="value">50</span>
+                                </div> -->
+                            </div>
+
+                            <input type="range" tabindex="0" value="0" max="100" min="0" step="1" id="hvacFrac" oninput="
+                            
+                            var value=this.value;
+                            var children = this.parentNode.childNodes[1].childNodes;
+                            children[1].style.width='100%';
+                            children[5].style.left=value+'%';
+                            children[7].style.left=value+'%';children[11].style.left=value+'%'; 
+                            // document.getElementById('p03_1').innerHTML = this.value + '%';
+                            // document.getElementById('p1_3').innerHTML = parseFloat(document.getElementById('pp2').value) - parseFloat(this.value) + '%';
+                            // document.getElementById('p3_10').innerHTML = 100 - parseFloat(document.getElementById('pp2').value) + '%';
+                            
+                            children[11].childNodes[1].innerHTML=this.value;"/>
+
+                            <!-- <input type="range" tabindex="0" value="0" max="100" min="0" step="1" id="uvgiFrac"> -->
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -285,109 +338,123 @@
         <div class="w3-half w3-container">
             <div class="w3-topbar w3-container w3-card w3-white w3-border-amber">
                 <!-- <img src="/w3images/cellphone.jpg" style="width:100%"> -->
-                <h3><i class="fal fa-head-side"></i> Devices</h3>
+                <h3><i class="fal fa-microwave"></i> Devices</h3>
                 <div class="w3-row-padding" style="margin:0 -16px;">
                     <div class="w3-half w3-margin-bottom">
-                        <label for="totalOccupant"><i class="fal fa-users"></i> Total (person)</label>
+                        <label for="airCleaner"><i class="fal fa-fan-table"></i> Air cleaner (CADR)</label>
                         <!-- <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required> -->
-                        <input class="w3-input w3-border" type="number" value="100" min="1" name="totalOccupant" id="totalOccupant" required>
+                        <input class="w3-input w3-border" type="number" value="0" min="0" name="airCleaner" id="airCleaner" required>
                     </div>
                     <div class="w3-half w3-margin-bottom">
-                        <label for="infector"><i class="fal fa-users-medical"></i> Infector (person)</label>
+                        <label for="airCleanerFrac"><i class="fal fa-clock"></i> Operation duration (%)</label>
                         <!-- <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required> -->
-                        <input class="w3-input w3-border" type="number" value="1" min="1" name="infector" id="infector" required>
+                        <div slider>
+                            <div>
+                                <div inverse-left style="width:100%;"></div>
+                                <!-- <div inverse-right style="width:80%;"></div> -->
+                                <div range style="left:0%;right:100%;"></div>
+                                <span thumb style="left:0%;"></span>
+                                <!-- <span thumb style="left:50%;"></span> -->
+                                <div sign style="left:0%;">
+                                  <span id="value">0</span>
+                                </div>
+                                <!-- <div sign style="left:50%;" hidden>
+                                  <span id="value">50</span>
+                                </div> -->
+                            </div>
+
+                            <input type="range" tabindex="0" value="0" max="100" min="0" step="1" id="airCleanerFrac" oninput="
+                            
+                            var value=this.value;
+                            var children = this.parentNode.childNodes[1].childNodes;
+                            children[1].style.width='100%';
+                            children[5].style.left=value+'%';
+                            children[7].style.left=value+'%';children[11].style.left=value+'%'; 
+                            // document.getElementById('p03_1').innerHTML = this.value + '%';
+                            // document.getElementById('p1_3').innerHTML = parseFloat(document.getElementById('pp2').value) - parseFloat(this.value) + '%';
+                            // document.getElementById('p3_10').innerHTML = 100 - parseFloat(document.getElementById('pp2').value) + '%';
+                            
+                            children[11].childNodes[1].innerHTML=this.value;"/>
+
+                            <!-- <input type="range" tabindex="0" value="0" max="100" min="0" step="1" id="uvgiFrac"> -->
+                        </div>
+                        
                     </div>
                 </div>
 
                 <div class="w3-row-padding" style="margin:8px -16px;">
                     <div class="w3-half w3-margin-bottom">
-                        <label for="activity"><i class="fal fa-walking"></i> Activity</label>
-                        <select class="w3-select w3-border" name="activity" id="activity" oninput="setActivity()" required>
-                            <option value="sleeping">Sleeping</option>
-                            <option value="sittingResting" selected>Sitting/Resting</option>
-                            <option value="walking">Walking</option>
-                            <option value="running">Running</option>
-                            <option value="heavy">Heavy intensity</option>
-                        </select>
-                    </div>
-                    <div class="w3-half w3-margin-bottom">
-                        <label for="inhalation"><i class="fal fa-lungs"></i> Inhalation (m<sup>3</sup>/h)</label>
+                        <label for="uvgi"><i class="fal fa-light-ceiling"></i> Upper-room UVGI (h<sup>-1</sup>)</label>
                         <!-- <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required> -->
-                        <input class="w3-input w3-border" type="number" value="0.3" min="0" step="0.1" name="inhalation" id="inhalation" required>
-                    </div>
-                </div>
-
-                <div class="w3-row-padding" style="margin:8px -16px;">
-                    <div class="w3-half w3-margin-bottom">
-                        <label for="mask1"><i class="fal fa-head-side-mask"></i> Mask (infector)</label>
-                        <select class="w3-select w3-border" name="mask1" id="mask1" required>
-                            <option value="none" selected>None</option>
-                            <option value="cloth">Cloth</option>
-                            <option value="surgical">Surgical</option>
-                            <option value="n95">N95</option>
-                        </select>
+                        <input class="w3-input w3-border" type="number" value="0" min="0" name="uvgi" id="uvgi" required>
                     </div>
                     <div class="w3-half w3-margin-bottom">
-                        <label for="mask2"><i class="fal fa-head-side-mask"></i> Mask (susceptible)</label>
-                        <select class="w3-select w3-border" name="mask2" id="mask2" required>
-                            <option value="none" selected>None</option>
-                            <option value="cloth">Cloth</option>
-                            <option value="surgical">Surgical</option>
-                            <option value="n95">N95</option>
-                        </select>
+                        <label for="uvgiFrac"><i class="fal fa-clock"></i> Operation duration (%)</label>
+                        <!-- <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required> -->
+                        <div slider>
+                            <div>
+                                <div inverse-left style="width:100%;"></div>
+                                <!-- <div inverse-right style="width:80%;"></div> -->
+                                <div range style="left:0%;right:100%;"></div>
+                                <span thumb style="left:0%;"></span>
+                                <!-- <span thumb style="left:50%;"></span> -->
+                                <div sign style="left:0%;">
+                                  <span id="value">0</span>
+                                </div>
+                                <!-- <div sign style="left:50%;" hidden>
+                                  <span id="value">50</span>
+                                </div> -->
+                            </div>
+
+                            <input type="range" tabindex="0" value="0" max="100" min="0" step="1" id="uvgiFrac" oninput="
+                            
+                            var value=this.value;
+                            var children = this.parentNode.childNodes[1].childNodes;
+                            children[1].style.width='100%';
+                            children[5].style.left=value+'%';
+                            children[7].style.left=value+'%';children[11].style.left=value+'%'; 
+                            // document.getElementById('p03_1').innerHTML = this.value + '%';
+                            // document.getElementById('p1_3').innerHTML = parseFloat(document.getElementById('pp2').value) - parseFloat(this.value) + '%';
+                            // document.getElementById('p3_10').innerHTML = 100 - parseFloat(document.getElementById('pp2').value) + '%';
+                            
+                            children[11].childNodes[1].innerHTML=this.value;"/>
+
+                            <!-- <input type="range" tabindex="0" value="0" max="100" min="0" step="1" id="uvgiFrac"> -->
+                        </div>
                     </div>
                 </div>
-
-                
             </div>
         </div>
         <div class="w3-half w3-container">
             <div class="w3-topbar w3-container w3-card w3-white w3-border-amber">
                 <!-- <img src="/w3images/sealions.jpg" style="width:100%"> -->
-                <h3><i class="fal fa-fan"></i> Other Settings</h3>
+                <h3><i class="fal fa-cogs"></i> Other Settings</h3>
                 <div class="w3-row-padding" style="margin:0 -16px;">
                     <div class="w3-half w3-margin-bottom">
-                        <label for="ventRatePerPerson"><i class="fal fa-wind"></i> Required fresh air (m<sup>3</sup>/h&middot;person)</label>
-                        <!-- <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckIn" required> -->
-                        <input class="w3-input w3-border" type="number" value="100" min="0" name="ventRatePerPerson" id="ventRatePerPerson" required>
+                        <input class="w3-check" type="checkbox" checked="checked" name="deposition" id="deposition">
+                        <label for="deposition" >Particle deposition</label>
                     </div>
                     <div class="w3-half w3-margin-bottom">
-                        <label for="returnFrac"><i class="fal fa-repeat"></i> Return air fraction (%)</label>
-                        <input class="w3-input w3-border" type="number" value="25" min="0" max="100" name="returnFrac" id="returnFrac" required>
+                        <input class="w3-check" type="checkbox" checked="checked" name="inactivation" id="inactivation">
+                        <label for="inactivation" >Natural inactivation</label>
                     </div>
                 </div>
                 <div class="w3-row-padding" style="margin:8px -16px;">
                     <div class="w3-half w3-margin-bottom">
-                        <label for="supply"><i class="fal fa-air-conditioner"></i> Total supply air (m<sup>3</sup>/h)</label>
-                        <input class="w3-input w3-border" type="number" value="100" min="0" name="supply" id="supply" required>
+                        <input class="w3-radio" type="radio" name="model" id="model" value="steady" checked>
+                        <label>Steady-state</label>
+                        <br>
+
+                        <input class="w3-radio" type="radio" name="model" id="model"  value="unsteady">
+                        <label>Unsteady-state</label>
                     </div>
                     <div class="w3-half w3-margin-bottom">
-                        <label for="filter"><i class="fal fa-container-storage"></i> Filter</label>
-                        <select class="w3-select w3-border" name="filter" id="filter" required>
-                            <option value="none" selected>None</option>
-                            <option value="merv1">MERV1</option>
-                            <option value="merv2">MERV2</option>
-                            <option value="merv3">MERV3</option>
-                        </select>
+                        <label for="duration"><i class="fal fa-clock"></i> Exposure duration (h)</label>
+                        <!-- <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required> -->
+                        <input class="w3-input w3-border" type="number" value="8" min="0" name="duration" id="duration" required>
                     </div>
                 </div>
-                <div class="w3-row-padding" style="margin:8px -16px;">
-                    
-                    <div class="w3-half w3-margin-bottom">
-                        <label for="ventMode"><i class="fal fa-fan-table"></i> Ventilation mode</label>
-                        <select class="w3-select w3-border" name="ventMode" id="ventMode" oninput="SetVentMode()" required>
-                            <option value="mixing" selected>Mixing</option>
-                            <option value="displacement">Displacement</option>
-                            <option value="personal">Personal</option>
-                            <option value="mixingPersonal">Mixing+Personal</option>
-                            <option value="displacementPersonal">Displacement+Personal</option>
-                        </select>
-                    </div>
-                    <div class="w3-half w3-margin-bottom">
-                        <label for="ventEff"><i class="fal fa-leaf"></i> Ventilation efficiency</label>
-                        <input class="w3-input w3-border" type="number" value="1" min="0" name="ventEff" id="ventEff" required>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </div>
@@ -404,36 +471,23 @@
         <div class="w3-half w3-container">
             <div class="w3-topbar w3-container w3-card w3-white w3-border-orange">
                 <!-- <img src="/w3images/cellphone.jpg" style="width:100%"> -->
-                <h3>Smart Vacation</h3>
+                <h3>Infection Possibility</h3>
                 <div class="w3-row-padding" style="margin:0 -16px;">
                     <div class="w3-half w3-margin-bottom">
-                        <label><i class="fa fa-calendar-o"></i> Check In</label>
-                        <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckIn" required>
+                        <p id="risk">Risk</p>
                     </div>
-                    <div class="w3-half w3-margin-bottom">
-                        <label><i class="fa fa-calendar-o"></i> Check Out</label>
-                        <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required>
-                    </div>
+                    
                 </div>
                 <div class="w3-row-padding" style="margin:8px -16px;">
                     <div class="w3-half w3-margin-bottom">
-                        <label><i class="fa fa-male"></i> Adults</label>
-                        <input class="w3-input w3-border" type="number" value="1" name="Adults" min="1" max="6">
+                        <!-- <input class="w3-input w3-border" type="number" value="1" name="Adults" min="1" max="6"> -->
+                        <button id="run" onclick="Calculate()">Calculate</button>
                     </div>
-                    <div class="w3-half w3-margin-bottom">
-                        <label><i class="fa fa-child"></i> Kids</label>
-                        <input class="w3-input w3-border" type="number" value="0" name="Kids" min="0" max="6">
-                    </div>
+                    
                 </div>
             </div>
         </div>
-        <div class="w3-half w3-container">
-            <div class="w3-topbar w3-container w3-card w3-white w3-border-orange">
-                <!-- <img src="/w3images/sealions.jpg" style="width:100%"> -->
-                <h3>Super Offers</h3>
-                <p>Up to 50% offers. Always 25% student offers.</p>
-            </div>
-        </div>
+        
     </div>
   
     <script>
@@ -507,6 +561,85 @@
                     inhalation = 0;
             }
             document.getElementById("inhalation").value = inhalation;
+        }
+
+        function Calculate(){
+            var supply = document.getElementById("supply").value;
+            var returnFrac = document.getElementById("returnFrac").value;
+            var infector = document.getElementById("infector").value;
+            var quanta = document.getElementById("quanta").value;
+            var inhalation = document.getElementById("inhalation").value;
+            var duration = document.getElementById("duration").value;
+            var qr = supply * returnFrac;
+            var qf = supply - qr;
+
+            var filter = document.getElementById("filter").value;
+            
+            switch (filter){
+                case "none":
+                    filterEff = 0;
+                    break;
+                case "MERV1":
+                    filterEff = 0.1;
+                    break;
+                case "MERV2":
+                    filterEff = 0.2;
+                    break;
+                case "MERV3":
+                    filterEff = 0.3;
+                    break;
+                default:
+                    mask1 = 0;
+            }
+
+            var q = qf + qr*filterEff;
+
+
+            var mask1 = document.getElementById("mask1").value;
+            switch (mask1){
+                case "cloth":
+                    mask1Eff = 0.5;
+                    break;
+                case "surgical":
+                    mask1Eff = 0.75;
+                    break;
+                case "n95":
+                    mask1Eff = 0.95;
+                    break;
+                case "none":
+                    mask1Eff = 0;
+                    break;
+                default:
+                    mask1Eff = 0;
+            }
+            
+
+            
+
+            var mask2 = document.getElementById("mask2").value;
+            switch (mask2){
+                case "cloth":
+                    mask2Eff = 0.5;
+                    break;
+                case "surgical":
+                    mask2Eff = 0.75;
+                    break;
+                case "n95":
+                    mask2Eff = 0.95;
+                    break;
+                case "none":
+                    mask2Eff = 0;
+                    break;
+                default:
+                    mask2Eff = 0;
+            }
+
+            var risk = 1 - Math.exp(-1*infector*quanta*inhalation*duration*(1-mask1Eff)*(1-mask2Eff)/q);
+
+            // self.probability = 1 - math.exp(-1*self.infective*self.quanta*self.inhalation*self.duration*
+            //                             (1 - self.mask1)*(1 - self.mask2)/self.V/eqACH)
+
+            document.getElementById("risk").innerHTML = risk+'%';
         }
     </script>
 </body>
