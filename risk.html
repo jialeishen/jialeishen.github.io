@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Infection Risk Estimation</title>
+	<meta charset="utf-8">
+    <meta name = "description" content="This is a page showing something cool.">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.14.0/css/all.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
+    </style>
+</head>
+<body class="w3-light-grey">
+    <div class="w3-display-container" style="margin-bottom:10px">
+        <img src="img/covid.jpg" alt="COVID-19" style="width:100%">
+        <div class="w3-display-bottomleft w3-container w3-amber w3-hide-small"
+         style="bottom:10%;opacity:0.7;width:70%">
+        <h2><b>Infection Risk Estimation</h2>
+        <h4><b>Airborne Transmission</h4>
+        </div>
+    </div>
+    
+    <div class="w3-padding w3-col l6 m8">
+        <div class="w3-container w3-amber">
+            <h3><b>Input Information</b></h3>
+        </div>
+    </div>
+
+    <div class="w3-row w3-container" style="margin:50px 0">
+        <div class="w3-half w3-container">
+            <div class="w3-topbar w3-container w3-card w3-white w3-border-amber">
+                <!-- <img src="/w3images/cellphone.jpg" style="width:100%"> -->
+                <h3><i class="fal fa-virus"></i> Disease</h3>
+                <div class="w3-row-padding" style="margin:0 -16px;">
+                    <div class="w3-half w3-margin-bottom">
+                        <label for="disease"><i class="fal fa-viruses"></i> Disease</label>
+                        <select class="w3-select w3-border" name="disease" id="disease" oninput="setDisease()" required>
+                            <option value="covid" selected>COVID-19</option>
+                            <option value="influenza">Influenza</option>
+                            <option value="rhinovirus">Rhinovirus</option>
+                            <option value="tb">Tuberculosis</option>
+                            <option value="sars">SARS</option>
+                            <option value="measles">Measles</option>
+                        </select>
+                    </div>
+                    <div class="w3-half w3-margin-bottom">
+                        <label for="quanta"><i class="fal fa-head-side-cough"></i> Emission (q/h)</label>
+                        <!-- <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required> -->
+                        <input class="w3-input w3-border" type="number" value="100" min="0" name="quanta" id="quanta" required>
+                    </div>
+                </div>
+                <div class="w3-row-padding" style="margin:8px -16px;">
+                    <div class="w3-margin-bottom">
+                        <label for="particleSize" style="margin: 0 8px"><i class="fal fa-disease"></i> Particle size distribution</label>
+                        <div>
+                            <div class="w3-row w3-container">
+                                <div class="w3-third w3-center">
+                                    <i class="fal fa-circle" style="font-size:6px"></i>
+                                    0.3-1um
+                                </div>
+                                <div class="w3-third w3-center">
+                                    <i class="fal fa-circle" style="font-size:12px"></i>
+                                    1-3um
+                                </div>
+                                <div class="w3-third w3-center">
+                                    <i class="fal fa-circle"></i>
+                                    3-10um
+                                </div>
+                            </div>
+                            <div class="w3-row w3-container">
+                                <div class="w3-third w3-center" id="p03_1">
+                                    20%
+                                </div>
+                                <div class="w3-third w3-center" id='p1_3'>
+                                    30%
+                                </div>
+                                <div class="w3-third w3-center" id="p3_10">
+                                    50%
+                                </div>
+                            </div>
+                        </div>
+                        <div slider id="slider-distance">
+                            <div>
+                              <div inverse-left style="width:80%;"></div>
+                              <div inverse-right style="width:80%;"></div>
+                              <div range style="left:20%;right:50%;"></div>
+                              <span thumb style="left:20%;"></span>
+                              <span thumb style="left:50%;"></span>
+                              <div sign style="left:20%;" hidden>
+                                <span id="value">20</span>
+                              </div>
+                              <div sign style="left:50%;" hidden>
+                                <span id="value">50</span>
+                              </div>
+                            </div>
+                            <input type="range" tabindex="0" value="20" max="100" min="0" step="1" id="pp1" oninput="
+                            this.value=Math.min(this.value,this.parentNode.childNodes[5].value-1);
+                            var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+                            var children = this.parentNode.childNodes[1].childNodes;
+                            children[1].style.width=value+'%';
+                            children[5].style.left=value+'%';
+                            children[7].style.left=value+'%';children[11].style.left=value+'%'; 
+                            document.getElementById('p03_1').innerHTML = this.value + '%';
+                            document.getElementById('p1_3').innerHTML = parseFloat(document.getElementById('pp2').value) - parseFloat(this.value) + '%';
+                            document.getElementById('p3_10').innerHTML = 100 - parseFloat(document.getElementById('pp2').value) + '%';
+                            
+                            children[11].childNodes[1].innerHTML=this.value;"/>
+                            <input type="range" tabindex="0" value="50" max="100" min="0" step="1" id="pp2" oninput="
+                            this.value=Math.max(this.value,this.parentNode.childNodes[3].value-(-1));
+                            var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+                            var children = this.parentNode.childNodes[1].childNodes;
+                            children[3].style.width=(100-value)+'%';
+                            children[5].style.right=(100-value)+'%';
+                            children[9].style.left=value+'%';children[13].style.left=value+'%';
+                            document.getElementById('p1_3').innerHTML = parseFloat(this.value) - parseFloat(document.getElementById('pp1').value) + '%';
+                            document.getElementById('p3_10').innerHTML = 100 - this.value + '%';
+                            
+                            // children[13].childNodes[1].innerHTML=this.value;" />
+                        </div>
+
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="w3-half w3-container">
+            <div class="w3-topbar w3-container w3-card w3-white w3-border-amber">
+                <!-- <img src="/w3images/sealions.jpg" style="width:100%"> -->
+                <h3><i class="fal fa-house"></i> Room</h3>
+                <div class="w3-row-padding" style="margin:0 -16px;">
+                    <div class="w3-half w3-margin-bottom">
+                        <label for="roomType"><i class="fal fa-hospital-alt"></i> Type</label>
+                        <!-- <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckIn" required> -->
+                        <select class="w3-select w3-border" name="roomType" id="roomType" oninput="setDefault()" required>
+                            <optgroup label="Office building">
+                                <option value="office" selected>Office</option>
+                                <option value="conferenceRoom">Conference room</option>
+                            </optgroup>
+                            <optgroup label="Education building">
+                                <option value="classroom">Classroom</option>
+                            </optgroup>
+                            <optgroup label="Hotel building">
+                                <option value="hotelLobby">Lobby</option>
+                                <option value="hotelGuestRoom">Guest room</option>
+                                <option value="hotelBistro">Bistro</option>
+                            </optgroup>
+                            <optgroup label="Cruise Line">
+                                <option value="cruiseLineGuestRoom">Guest room</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="w3-half w3-margin-bottom">
+                        <label for="roomArea"><i class="fal fa-cube"></i> Area (m<sup>2</sup>)</label>
+                        <input class="w3-input w3-border" type="number" value="100" min="0" name="roomArea" id="roomArea" required>
+                    </div>
+                </div>
+                <div class="w3-row-padding" style="margin:8px -16px;">
+                    <div class="w3-half w3-margin-bottom">
+                        <label for="roomHeight"><i class="fal fa-ruler-vertical"></i> Height (m)</label>
+                        <input class="w3-input w3-border" type="number" value="3" min="0" name="roomHeight" id="roomHeight" required>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--  -->
+
+    <div class="w3-row w3-container" style="margin:50px 0">
+        <div class="w3-half w3-container">
+            <div class="w3-topbar w3-container w3-card w3-white w3-border-amber">
+                <!-- <img src="/w3images/cellphone.jpg" style="width:100%"> -->
+                <h3><i class="fal fa-head-side"></i> Occupant</h3>
+                <div class="w3-row-padding" style="margin:0 -16px;">
+                    <div class="w3-half w3-margin-bottom">
+                        <label for="totalOccupant"><i class="fal fa-users"></i> Total (person)</label>
+                        <!-- <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required> -->
+                        <input class="w3-input w3-border" type="number" value="100" min="1" name="totalOccupant" id="totalOccupant" required>
+                    </div>
+                    <div class="w3-half w3-margin-bottom">
+                        <label for="infector"><i class="fal fa-users-medical"></i> Infector (person)</label>
+                        <!-- <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required> -->
+                        <input class="w3-input w3-border" type="number" value="1" min="1" name="infector" id="infector" required>
+                    </div>
+                </div>
+
+                <div class="w3-row-padding" style="margin:8px -16px;">
+                    <div class="w3-half w3-margin-bottom">
+                        <label for="activity"><i class="fal fa-walking"></i> Activity</label>
+                        <select class="w3-select w3-border" name="activity" id="activity" oninput="setActivity()" required>
+                            <option value="sleeping">Sleeping</option>
+                            <option value="sittingResting" selected>Sitting/Resting</option>
+                            <option value="walking">Walking</option>
+                            <option value="running">Running</option>
+                            <option value="heavy">Heavy intensity</option>
+                        </select>
+                    </div>
+                    <div class="w3-half w3-margin-bottom">
+                        <label for="inhalation"><i class="fal fa-lungs"></i> Inhalation (m<sup>3</sup>/h)</label>
+                        <!-- <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required> -->
+                        <input class="w3-input w3-border" type="number" value="0.3" min="0" step="0.1" name="inhalation" id="inhalation" required>
+                    </div>
+                </div>
+
+                <div class="w3-row-padding" style="margin:8px -16px;">
+                    <div class="w3-half w3-margin-bottom">
+                        <label for="mask1"><i class="fal fa-head-side-mask"></i> Mask (infector)</label>
+                        <select class="w3-select w3-border" name="mask1" id="mask1" required>
+                            <option value="none" selected>None</option>
+                            <option value="cloth">Cloth</option>
+                            <option value="surgical">Surgical</option>
+                            <option value="n95">N95</option>
+                        </select>
+                    </div>
+                    <div class="w3-half w3-margin-bottom">
+                        <label for="mask2"><i class="fal fa-head-side-mask"></i> Mask (susceptible)</label>
+                        <select class="w3-select w3-border" name="mask2" id="mask2" required>
+                            <option value="none" selected>None</option>
+                            <option value="cloth">Cloth</option>
+                            <option value="surgical">Surgical</option>
+                            <option value="n95">N95</option>
+                        </select>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        <div class="w3-half w3-container">
+            <div class="w3-topbar w3-container w3-card w3-white w3-border-amber">
+                <!-- <img src="/w3images/sealions.jpg" style="width:100%"> -->
+                <h3><i class="fal fa-fan"></i> HVAC System</h3>
+                <div class="w3-row-padding" style="margin:0 -16px;">
+                    <div class="w3-half w3-margin-bottom">
+                        <label for="ventRatePerPerson"><i class="fal fa-wind"></i> Required fresh air (m<sup>3</sup>/h&middot;person)</label>
+                        <!-- <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckIn" required> -->
+                        <input class="w3-input w3-border" type="number" value="100" min="0" name="ventRatePerPerson" id="ventRatePerPerson" required>
+                    </div>
+                    <div class="w3-half w3-margin-bottom">
+                        <label for="returnFrac"><i class="fal fa-repeat"></i> Return air fraction (%)</label>
+                        <input class="w3-input w3-border" type="number" value="25" min="0" max="100" name="returnFrac" id="returnFrac" required>
+                    </div>
+                </div>
+                <div class="w3-row-padding" style="margin:8px -16px;">
+                    <div class="w3-half w3-margin-bottom">
+                        <label for="supply"><i class="fal fa-air-conditioner"></i> Total supply air (m<sup>3</sup>/h)</label>
+                        <input class="w3-input w3-border" type="number" value="100" min="0" name="supply" id="supply" required>
+                    </div>
+                    <div class="w3-half w3-margin-bottom">
+                        <label for="filter"><i class="fal fa-container-storage"></i> Filter</label>
+                        <select class="w3-select w3-border" name="filter" id="filter" required>
+                            <option value="none" selected>None</option>
+                            <option value="merv1">MERV1</option>
+                            <option value="merv2">MERV2</option>
+                            <option value="merv3">MERV3</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="w3-row-padding" style="margin:8px -16px;">
+                    
+                    <div class="w3-half w3-margin-bottom">
+                        <label for="ventMode"><i class="fal fa-fan-table"></i> Ventilation mode</label>
+                        <select class="w3-select w3-border" name="ventMode" id="ventMode" oninput="SetVentMode()" required>
+                            <option value="mixing" selected>Mixing</option>
+                            <option value="displacement">Displacement</option>
+                            <option value="personal">Personal</option>
+                            <option value="mixingPersonal">Mixing+Personal</option>
+                            <option value="displacementPersonal">Displacement+Personal</option>
+                        </select>
+                    </div>
+                    <div class="w3-half w3-margin-bottom">
+                        <label for="ventEff"><i class="fal fa-leaf"></i> Ventilation efficiency</label>
+                        <input class="w3-input w3-border" type="number" value="1" min="0" name="ventEff" id="ventEff" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  -->
+
+    <div class="w3-row w3-container" style="margin:50px 0">
+        <div class="w3-half w3-container">
+            <div class="w3-topbar w3-container w3-card w3-white w3-border-amber">
+                <!-- <img src="/w3images/cellphone.jpg" style="width:100%"> -->
+                <h3><i class="fal fa-head-side"></i> Devices</h3>
+                <div class="w3-row-padding" style="margin:0 -16px;">
+                    <div class="w3-half w3-margin-bottom">
+                        <label for="totalOccupant"><i class="fal fa-users"></i> Total (person)</label>
+                        <!-- <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required> -->
+                        <input class="w3-input w3-border" type="number" value="100" min="1" name="totalOccupant" id="totalOccupant" required>
+                    </div>
+                    <div class="w3-half w3-margin-bottom">
+                        <label for="infector"><i class="fal fa-users-medical"></i> Infector (person)</label>
+                        <!-- <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required> -->
+                        <input class="w3-input w3-border" type="number" value="1" min="1" name="infector" id="infector" required>
+                    </div>
+                </div>
+
+                <div class="w3-row-padding" style="margin:8px -16px;">
+                    <div class="w3-half w3-margin-bottom">
+                        <label for="activity"><i class="fal fa-walking"></i> Activity</label>
+                        <select class="w3-select w3-border" name="activity" id="activity" oninput="setActivity()" required>
+                            <option value="sleeping">Sleeping</option>
+                            <option value="sittingResting" selected>Sitting/Resting</option>
+                            <option value="walking">Walking</option>
+                            <option value="running">Running</option>
+                            <option value="heavy">Heavy intensity</option>
+                        </select>
+                    </div>
+                    <div class="w3-half w3-margin-bottom">
+                        <label for="inhalation"><i class="fal fa-lungs"></i> Inhalation (m<sup>3</sup>/h)</label>
+                        <!-- <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required> -->
+                        <input class="w3-input w3-border" type="number" value="0.3" min="0" step="0.1" name="inhalation" id="inhalation" required>
+                    </div>
+                </div>
+
+                <div class="w3-row-padding" style="margin:8px -16px;">
+                    <div class="w3-half w3-margin-bottom">
+                        <label for="mask1"><i class="fal fa-head-side-mask"></i> Mask (infector)</label>
+                        <select class="w3-select w3-border" name="mask1" id="mask1" required>
+                            <option value="none" selected>None</option>
+                            <option value="cloth">Cloth</option>
+                            <option value="surgical">Surgical</option>
+                            <option value="n95">N95</option>
+                        </select>
+                    </div>
+                    <div class="w3-half w3-margin-bottom">
+                        <label for="mask2"><i class="fal fa-head-side-mask"></i> Mask (susceptible)</label>
+                        <select class="w3-select w3-border" name="mask2" id="mask2" required>
+                            <option value="none" selected>None</option>
+                            <option value="cloth">Cloth</option>
+                            <option value="surgical">Surgical</option>
+                            <option value="n95">N95</option>
+                        </select>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        <div class="w3-half w3-container">
+            <div class="w3-topbar w3-container w3-card w3-white w3-border-amber">
+                <!-- <img src="/w3images/sealions.jpg" style="width:100%"> -->
+                <h3><i class="fal fa-fan"></i> Other Settings</h3>
+                <div class="w3-row-padding" style="margin:0 -16px;">
+                    <div class="w3-half w3-margin-bottom">
+                        <label for="ventRatePerPerson"><i class="fal fa-wind"></i> Required fresh air (m<sup>3</sup>/h&middot;person)</label>
+                        <!-- <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckIn" required> -->
+                        <input class="w3-input w3-border" type="number" value="100" min="0" name="ventRatePerPerson" id="ventRatePerPerson" required>
+                    </div>
+                    <div class="w3-half w3-margin-bottom">
+                        <label for="returnFrac"><i class="fal fa-repeat"></i> Return air fraction (%)</label>
+                        <input class="w3-input w3-border" type="number" value="25" min="0" max="100" name="returnFrac" id="returnFrac" required>
+                    </div>
+                </div>
+                <div class="w3-row-padding" style="margin:8px -16px;">
+                    <div class="w3-half w3-margin-bottom">
+                        <label for="supply"><i class="fal fa-air-conditioner"></i> Total supply air (m<sup>3</sup>/h)</label>
+                        <input class="w3-input w3-border" type="number" value="100" min="0" name="supply" id="supply" required>
+                    </div>
+                    <div class="w3-half w3-margin-bottom">
+                        <label for="filter"><i class="fal fa-container-storage"></i> Filter</label>
+                        <select class="w3-select w3-border" name="filter" id="filter" required>
+                            <option value="none" selected>None</option>
+                            <option value="merv1">MERV1</option>
+                            <option value="merv2">MERV2</option>
+                            <option value="merv3">MERV3</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="w3-row-padding" style="margin:8px -16px;">
+                    
+                    <div class="w3-half w3-margin-bottom">
+                        <label for="ventMode"><i class="fal fa-fan-table"></i> Ventilation mode</label>
+                        <select class="w3-select w3-border" name="ventMode" id="ventMode" oninput="SetVentMode()" required>
+                            <option value="mixing" selected>Mixing</option>
+                            <option value="displacement">Displacement</option>
+                            <option value="personal">Personal</option>
+                            <option value="mixingPersonal">Mixing+Personal</option>
+                            <option value="displacementPersonal">Displacement+Personal</option>
+                        </select>
+                    </div>
+                    <div class="w3-half w3-margin-bottom">
+                        <label for="ventEff"><i class="fal fa-leaf"></i> Ventilation efficiency</label>
+                        <input class="w3-input w3-border" type="number" value="1" min="0" name="ventEff" id="ventEff" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--  -->
+
+    <div class="w3-padding w3-col l6 m8">
+        <div class="w3-container w3-orange">
+            <h3><b>Risk Estimation</b></h3>
+        </div>
+    </div>
+  
+    <div class="w3-row w3-container" style="margin:50px 0">
+        <div class="w3-half w3-container">
+            <div class="w3-topbar w3-container w3-card w3-white w3-border-orange">
+                <!-- <img src="/w3images/cellphone.jpg" style="width:100%"> -->
+                <h3>Smart Vacation</h3>
+                <div class="w3-row-padding" style="margin:0 -16px;">
+                    <div class="w3-half w3-margin-bottom">
+                        <label><i class="fa fa-calendar-o"></i> Check In</label>
+                        <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckIn" required>
+                    </div>
+                    <div class="w3-half w3-margin-bottom">
+                        <label><i class="fa fa-calendar-o"></i> Check Out</label>
+                        <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required>
+                    </div>
+                </div>
+                <div class="w3-row-padding" style="margin:8px -16px;">
+                    <div class="w3-half w3-margin-bottom">
+                        <label><i class="fa fa-male"></i> Adults</label>
+                        <input class="w3-input w3-border" type="number" value="1" name="Adults" min="1" max="6">
+                    </div>
+                    <div class="w3-half w3-margin-bottom">
+                        <label><i class="fa fa-child"></i> Kids</label>
+                        <input class="w3-input w3-border" type="number" value="0" name="Kids" min="0" max="6">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="w3-half w3-container">
+            <div class="w3-topbar w3-container w3-card w3-white w3-border-orange">
+                <!-- <img src="/w3images/sealions.jpg" style="width:100%"> -->
+                <h3>Super Offers</h3>
+                <p>Up to 50% offers. Always 25% student offers.</p>
+            </div>
+        </div>
+    </div>
+  
+    <script>
+        function setDefault(){
+            var roomType = document.getElementById("roomType").value;
+            switch (roomType){
+                case "office":
+                    roomArea = 20;
+                    break;
+                case "classroom":
+                    roomArea = 10;
+                    break;
+                case "hotelGuestRoom":
+                    roomArea = 10;
+                    break;
+                case "cruiseLineGuestRoom":
+                    roomArea = 20;
+                    break;
+                default:
+                    roomArea = 0;
+            }
+            document.getElementById("roomArea").value = roomArea;
+        }
+
+        function setDisease(){
+            var disease = document.getElementById("disease").value;
+            switch (disease){
+                case "covid":
+                    quanta = 100;
+                    break;
+                case "influenza":
+                    quanta = 100;
+                    break;
+                case "rhinovirus":
+                    quanta = 5;
+                    break;
+                case "tb":
+                    quanta = 13;
+                    break;
+                case "sars":
+                    quanta = 150;
+                    break;
+                case "measles":
+                    quanta = 3000;
+                    break;
+                default:
+                    quanta = 0;
+            }
+            document.getElementById("quanta").value = quanta;
+        }
+
+        function setActivity(){
+            var activity = document.getElementById("activity").value;
+            switch (activity){
+                case "sleeping":
+                    inhalation = 0.2;
+                    break;
+                case "sittingResting":
+                    inhalation = 0.3;
+                    break;
+                case "walking":
+                    inhalation = 0.5;
+                    break;
+                case "running":
+                    inhalation = 1.0;
+                    break;
+                case "heavy":
+                    inhalation = 1.5;
+                    break;
+                default:
+                    inhalation = 0;
+            }
+            document.getElementById("inhalation").value = inhalation;
+        }
+    </script>
+</body>
+</html>
