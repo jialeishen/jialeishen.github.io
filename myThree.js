@@ -77,3 +77,4 @@ render();
 
 
 window.addEventListener('mousemove', onMouseMove)
+window.addEventListener('click', onMouseMove)
