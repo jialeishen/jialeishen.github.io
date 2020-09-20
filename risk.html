@@ -1,27 +1,36 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Infection Risk Estimation</title>
-	<meta charset="utf-8">
-    <meta name = "description" content="This is a page showing something cool.">
+    <title>Infection Risk Estimation</title>
+    <meta charset="utf-8">
+    <meta name="description" content="This is a page showing something cool.">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.14.0/css/all.css">
     <link rel="stylesheet" href="css/style.css">
     <style>
-        body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
+        body,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: "Raleway", Arial, Helvetica, sans-serif
+        }
     </style>
 </head>
+
 <body class="w3-light-grey">
     <div class="w3-display-container" style="margin-bottom:10px">
         <img src="img/covid.jpg" alt="COVID-19" style="width:100%">
-        <div class="w3-display-bottomleft w3-container w3-amber w3-hide-small"
-         style="bottom:10%;opacity:0.7;width:70%">
-        <h2><b>Infection Risk Estimation</h2>
-        <h4><b>Airborne Transmission</h4>
+        <div class="w3-display-bottomleft w3-container w3-amber w3-hide-small" style="bottom:10%;opacity:0.7;width:70%">
+            <h2><b>Infection Risk Estimation</h2>
+            <h4><b>Airborne Transmission</h4>
         </div>
     </div>
-    
+
     <div class="w3-padding w3-col l6 m8">
         <div class="w3-container w3-amber">
             <h3><b>Input Information</b></h3>
@@ -48,12 +57,14 @@
                     <div class="w3-half w3-margin-bottom">
                         <label for="quanta"><i class="fal fa-head-side-cough"></i> Emission (q/h)</label>
                         <!-- <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required> -->
-                        <input class="w3-input w3-border" type="number" value="100" min="0" name="quanta" id="quanta" required>
+                        <input class="w3-input w3-border" type="number" value="100" min="0" name="quanta" id="quanta"
+                            required>
                     </div>
                 </div>
                 <div class="w3-row-padding" style="margin:8px -16px;">
                     <div class="w3-margin-bottom">
-                        <label for="particleSize" style="margin: 0 8px"><i class="fal fa-disease"></i> Particle size distribution</label>
+                        <label for="particleSize" style="margin: 0 8px"><i class="fal fa-disease"></i> Particle size
+                            distribution</label>
                         <div>
                             <div class="w3-row w3-container">
                                 <div class="w3-third w3-center">
@@ -83,17 +94,17 @@
                         </div>
                         <div slider id="slider-distance">
                             <div>
-                              <div inverse-left style="width:80%;"></div>
-                              <div inverse-right style="width:80%;"></div>
-                              <div range style="left:20%;right:50%;"></div>
-                              <span thumb style="left:20%;"></span>
-                              <span thumb style="left:50%;"></span>
-                              <div sign style="left:20%;" hidden>
-                                <span id="value">20</span>
-                              </div>
-                              <div sign style="left:50%;" hidden>
-                                <span id="value">50</span>
-                              </div>
+                                <div inverse-left style="width:80%;"></div>
+                                <div inverse-right style="width:80%;"></div>
+                                <div range style="left:20%;right:50%;"></div>
+                                <span thumb style="left:20%;"></span>
+                                <span thumb style="left:50%;"></span>
+                                <div sign style="left:20%;" hidden>
+                                    <span id="value">20</span>
+                                </div>
+                                <div sign style="left:50%;" hidden>
+                                    <span id="value">50</span>
+                                </div>
                             </div>
                             <input type="range" tabindex="0" value="20" max="100" min="0" step="1" id="pp1" oninput="
                             this.value=Math.min(this.value,this.parentNode.childNodes[5].value-1);
@@ -106,7 +117,7 @@
                             document.getElementById('p1_3').innerHTML = parseFloat(document.getElementById('pp2').value) - parseFloat(this.value) + '%';
                             document.getElementById('p3_10').innerHTML = 100 - parseFloat(document.getElementById('pp2').value) + '%';
                             
-                            children[11].childNodes[1].innerHTML=this.value;"/>
+                            children[11].childNodes[1].innerHTML=this.value;" />
                             <input type="range" tabindex="0" value="50" max="100" min="0" step="1" id="pp2" oninput="
                             this.value=Math.max(this.value,this.parentNode.childNodes[3].value-(-1));
                             var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
@@ -121,7 +132,7 @@
                         </div>
 
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -133,7 +144,8 @@
                     <div class="w3-half w3-margin-bottom">
                         <label for="roomType"><i class="fal fa-hospital-alt"></i> Type</label>
                         <!-- <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckIn" required> -->
-                        <select class="w3-select w3-border" name="roomType" id="roomType" oninput="setDefault()" required>
+                        <select class="w3-select w3-border" name="roomType" id="roomType" oninput="setDefault()"
+                            required>
                             <optgroup label="Office building">
                                 <option value="office" selected>Office</option>
                                 <option value="conferenceRoom">Conference room</option>
@@ -151,39 +163,43 @@
                             </optgroup>
                         </select>
                     </div>
-                    
+
                 </div>
                 <div class="w3-row-padding" style="margin:8px -16px;">
                     <div class="w3-half w3-margin-bottom">
                         <label for="roomArea"><i class="fal fa-cube"></i> Area (m<sup>2</sup>)</label>
-                        <input class="w3-input w3-border" type="number" value="100" min="0" name="roomArea" id="roomArea" required>
+                        <input class="w3-input w3-border" type="number" value="100" min="0" name="roomArea"
+                            id="roomArea" required>
                     </div>
                     <div class="w3-half w3-margin-bottom">
                         <label for="roomHeight"><i class="fal fa-ruler-vertical"></i> Height (m)</label>
-                        <input class="w3-input w3-border" type="number" value="3" min="0" name="roomHeight" id="roomHeight" required>
+                        <input class="w3-input w3-border" type="number" value="3" min="0" name="roomHeight"
+                            id="roomHeight" required>
                     </div>
-                    
+
                 </div>
                 <div class="w3-row-padding" style="margin:8px -16px;">
-                    
+
                     <div class="w3-half w3-margin-bottom">
                         <label for="roomConfiguration"><i class="fal fa-fan-table"></i> Room configuration</label>
-                        <select class="w3-select w3-border" name="roomConfiguration" id="roomConfiguration" oninput="SetRoomConfiguration()" required>
+                        <select class="w3-select w3-border" name="roomConfiguration" id="roomConfiguration"
+                            oninput="SetRoomConfiguration()" required>
                             <option value="open" selected>Open space</option>
                             <option value="semiopen">Semi-open space</option>
-                            
+
                         </select>
                     </div>
                     <div class="w3-half w3-margin-bottom">
                         <label for="ventEffRoomConfiguration"><i class="fal fa-leaf"></i> Ventilation efficiency</label>
-                        <input class="w3-input w3-border" type="number" value="1" min="0" name="ventEffRoomConfiguration" id="ventEffRoomConfiguration" required>
+                        <input class="w3-input w3-border" type="number" value="1" min="0"
+                            name="ventEffRoomConfiguration" id="ventEffRoomConfiguration" required>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-<!--  -->
+    <!--  -->
 
     <div class="w3-row w3-container" style="margin:50px 0">
         <div class="w3-half w3-container">
@@ -194,19 +210,22 @@
                     <div class="w3-half w3-margin-bottom">
                         <label for="totalOccupant"><i class="fal fa-users"></i> Total (person)</label>
                         <!-- <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required> -->
-                        <input class="w3-input w3-border" type="number" value="100" min="1" name="totalOccupant" id="totalOccupant" required>
+                        <input class="w3-input w3-border" type="number" value="100" min="1" name="totalOccupant"
+                            id="totalOccupant" required>
                     </div>
                     <div class="w3-half w3-margin-bottom">
                         <label for="infector"><i class="fal fa-users-medical"></i> Infector (person)</label>
                         <!-- <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required> -->
-                        <input class="w3-input w3-border" type="number" value="1" min="1" name="infector" id="infector" required>
+                        <input class="w3-input w3-border" type="number" value="1" min="1" name="infector" id="infector"
+                            required>
                     </div>
                 </div>
 
                 <div class="w3-row-padding" style="margin:8px -16px;">
                     <div class="w3-half w3-margin-bottom">
                         <label for="activity"><i class="fal fa-walking"></i> Activity</label>
-                        <select class="w3-select w3-border" name="activity" id="activity" oninput="setActivity()" required>
+                        <select class="w3-select w3-border" name="activity" id="activity" oninput="setActivity()"
+                            required>
                             <option value="sleeping">Sleeping</option>
                             <option value="sittingResting" selected>Sitting/Resting</option>
                             <option value="walking">Walking</option>
@@ -217,7 +236,8 @@
                     <div class="w3-half w3-margin-bottom">
                         <label for="inhalation"><i class="fal fa-lungs"></i> Inhalation (m<sup>3</sup>/h)</label>
                         <!-- <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required> -->
-                        <input class="w3-input w3-border" type="number" value="0.3" min="0" step="0.1" name="inhalation" id="inhalation" required>
+                        <input class="w3-input w3-border" type="number" value="0.3" min="0" step="0.1" name="inhalation"
+                            id="inhalation" required>
                     </div>
                 </div>
 
@@ -242,7 +262,7 @@
                     </div>
                 </div>
 
-                
+
             </div>
         </div>
         <div class="w3-half w3-container">
@@ -251,19 +271,24 @@
                 <h3><i class="fal fa-fan"></i> HVAC System</h3>
                 <div class="w3-row-padding" style="margin:0 -16px;">
                     <div class="w3-half w3-margin-bottom">
-                        <label for="ventRatePerPerson"><i class="fal fa-wind"></i> Required fresh air (m<sup>3</sup>/h&middot;person)</label>
+                        <label for="ventRatePerPerson"><i class="fal fa-wind"></i> Required fresh air
+                            (m<sup>3</sup>/h&middot;person)</label>
                         <!-- <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckIn" required> -->
-                        <input class="w3-input w3-border" type="number" value="100" min="0" name="ventRatePerPerson" id="ventRatePerPerson" required>
+                        <input class="w3-input w3-border" type="number" value="100" min="0" name="ventRatePerPerson"
+                            id="ventRatePerPerson" required>
                     </div>
                     <div class="w3-half w3-margin-bottom">
                         <label for="returnFrac"><i class="fal fa-repeat"></i> Return air fraction (%)</label>
-                        <input class="w3-input w3-border" type="number" value="25" min="0" max="100" name="returnFrac" id="returnFrac" required>
+                        <input class="w3-input w3-border" type="number" value="25" min="0" max="100" name="returnFrac"
+                            id="returnFrac" required>
                     </div>
                 </div>
                 <div class="w3-row-padding" style="margin:8px -16px;">
                     <div class="w3-half w3-margin-bottom">
-                        <label for="supply"><i class="fal fa-air-conditioner"></i> Total supply air (m<sup>3</sup>/h)</label>
-                        <input class="w3-input w3-border" type="number" value="100" min="0" name="supply" id="supply" required>
+                        <label for="supply"><i class="fal fa-air-conditioner"></i> Total supply air
+                            (m<sup>3</sup>/h)</label>
+                        <input class="w3-input w3-border" type="number" value="100" min="0" name="supply" id="supply"
+                            required>
                     </div>
                     <div class="w3-half w3-margin-bottom">
                         <label for="filter"><i class="fal fa-container-storage"></i> Filter</label>
@@ -276,10 +301,11 @@
                     </div>
                 </div>
                 <div class="w3-row-padding" style="margin:8px -16px;">
-                    
+
                     <div class="w3-half w3-margin-bottom">
                         <label for="ventMode"><i class="fal fa-fan-table"></i> Ventilation mode</label>
-                        <select class="w3-select w3-border" name="ventMode" id="ventMode" oninput="SetVentMode()" required>
+                        <select class="w3-select w3-border" name="ventMode" id="ventMode" oninput="SetVentMode()"
+                            required>
                             <option value="mixing" selected>Mixing</option>
                             <option value="displacement">Displacement</option>
                             <option value="personal">Personal</option>
@@ -289,11 +315,12 @@
                     </div>
                     <div class="w3-half w3-margin-bottom">
                         <label for="ventEff"><i class="fal fa-leaf"></i> Ventilation efficiency</label>
-                        <input class="w3-input w3-border" type="number" value="1" min="0" name="ventEff" id="ventEff" required>
+                        <input class="w3-input w3-border" type="number" value="1" min="0" name="ventEff" id="ventEff"
+                            required>
                     </div>
                 </div>
                 <div class="w3-row-padding" style="margin:8px -16px;">
-                    
+
                     <div class="w3-half w3-margin-bottom">
                         <label for="hvacFrac"><i class="fal fa-clock"></i> Operation duration (%)</label>
                         <!-- <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required> -->
@@ -305,7 +332,7 @@
                                 <span thumb style="left:0%;"></span>
                                 <!-- <span thumb style="left:50%;"></span> -->
                                 <div sign style="left:0%;">
-                                  <span id="value">0</span>
+                                    <span id="value">0</span>
                                 </div>
                                 <!-- <div sign style="left:50%;" hidden>
                                   <span id="value">50</span>
@@ -323,7 +350,7 @@
                             // document.getElementById('p1_3').innerHTML = parseFloat(document.getElementById('pp2').value) - parseFloat(this.value) + '%';
                             // document.getElementById('p3_10').innerHTML = 100 - parseFloat(document.getElementById('pp2').value) + '%';
                             
-                            children[11].childNodes[1].innerHTML=this.value;"/>
+                            children[11].childNodes[1].innerHTML=this.value;" />
 
                             <!-- <input type="range" tabindex="0" value="0" max="100" min="0" step="1" id="uvgiFrac"> -->
                         </div>
@@ -343,7 +370,8 @@
                     <div class="w3-half w3-margin-bottom">
                         <label for="airCleaner"><i class="fal fa-fan-table"></i> Air cleaner (CADR)</label>
                         <!-- <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required> -->
-                        <input class="w3-input w3-border" type="number" value="0" min="0" name="airCleaner" id="airCleaner" required>
+                        <input class="w3-input w3-border" type="number" value="0" min="0" name="airCleaner"
+                            id="airCleaner" required>
                     </div>
                     <div class="w3-half w3-margin-bottom">
                         <label for="airCleanerFrac"><i class="fal fa-clock"></i> Operation duration (%)</label>
@@ -356,14 +384,15 @@
                                 <span thumb style="left:0%;"></span>
                                 <!-- <span thumb style="left:50%;"></span> -->
                                 <div sign style="left:0%;">
-                                  <span id="value">0</span>
+                                    <span id="value">0</span>
                                 </div>
                                 <!-- <div sign style="left:50%;" hidden>
                                   <span id="value">50</span>
                                 </div> -->
                             </div>
 
-                            <input type="range" tabindex="0" value="0" max="100" min="0" step="1" id="airCleanerFrac" oninput="
+                            <input type="range" tabindex="0" value="0" max="100" min="0" step="1" id="airCleanerFrac"
+                                oninput="
                             
                             var value=this.value;
                             var children = this.parentNode.childNodes[1].childNodes;
@@ -374,11 +403,11 @@
                             // document.getElementById('p1_3').innerHTML = parseFloat(document.getElementById('pp2').value) - parseFloat(this.value) + '%';
                             // document.getElementById('p3_10').innerHTML = 100 - parseFloat(document.getElementById('pp2').value) + '%';
                             
-                            children[11].childNodes[1].innerHTML=this.value;"/>
+                            children[11].childNodes[1].innerHTML=this.value;" />
 
                             <!-- <input type="range" tabindex="0" value="0" max="100" min="0" step="1" id="uvgiFrac"> -->
                         </div>
-                        
+
                     </div>
                 </div>
 
@@ -386,7 +415,8 @@
                     <div class="w3-half w3-margin-bottom">
                         <label for="uvgi"><i class="fal fa-light-ceiling"></i> Upper-room UVGI (h<sup>-1</sup>)</label>
                         <!-- <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required> -->
-                        <input class="w3-input w3-border" type="number" value="0" min="0" name="uvgi" id="uvgi" required>
+                        <input class="w3-input w3-border" type="number" value="0" min="0" name="uvgi" id="uvgi"
+                            required>
                     </div>
                     <div class="w3-half w3-margin-bottom">
                         <label for="uvgiFrac"><i class="fal fa-clock"></i> Operation duration (%)</label>
@@ -399,7 +429,7 @@
                                 <span thumb style="left:0%;"></span>
                                 <!-- <span thumb style="left:50%;"></span> -->
                                 <div sign style="left:0%;">
-                                  <span id="value">0</span>
+                                    <span id="value">0</span>
                                 </div>
                                 <!-- <div sign style="left:50%;" hidden>
                                   <span id="value">50</span>
@@ -417,7 +447,7 @@
                             // document.getElementById('p1_3').innerHTML = parseFloat(document.getElementById('pp2').value) - parseFloat(this.value) + '%';
                             // document.getElementById('p3_10').innerHTML = 100 - parseFloat(document.getElementById('pp2').value) + '%';
                             
-                            children[11].childNodes[1].innerHTML=this.value;"/>
+                            children[11].childNodes[1].innerHTML=this.value;" />
 
                             <!-- <input type="range" tabindex="0" value="0" max="100" min="0" step="1" id="uvgiFrac"> -->
                         </div>
@@ -432,11 +462,11 @@
                 <div class="w3-row-padding" style="margin:0 -16px;">
                     <div class="w3-half w3-margin-bottom">
                         <input class="w3-check" type="checkbox" checked="checked" name="deposition" id="deposition">
-                        <label for="deposition" >Particle deposition</label>
+                        <label for="deposition">Particle deposition</label>
                     </div>
                     <div class="w3-half w3-margin-bottom">
                         <input class="w3-check" type="checkbox" checked="checked" name="inactivation" id="inactivation">
-                        <label for="inactivation" >Natural inactivation</label>
+                        <label for="inactivation">Natural inactivation</label>
                     </div>
                 </div>
                 <div class="w3-row-padding" style="margin:8px -16px;">
@@ -445,16 +475,17 @@
                         <label>Steady-state</label>
                         <br>
 
-                        <input class="w3-radio" type="radio" name="model" id="model"  value="unsteady">
+                        <input class="w3-radio" type="radio" name="model" id="model" value="unsteady">
                         <label>Unsteady-state</label>
                     </div>
                     <div class="w3-half w3-margin-bottom">
                         <label for="duration"><i class="fal fa-clock"></i> Exposure duration (h)</label>
                         <!-- <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required> -->
-                        <input class="w3-input w3-border" type="number" value="8" min="0" name="duration" id="duration" required>
+                        <input class="w3-input w3-border" type="number" value="8" min="0" name="duration" id="duration"
+                            required>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -466,7 +497,7 @@
             <h3><b>Risk Estimation</b></h3>
         </div>
     </div>
-  
+
     <div class="w3-row w3-container" style="margin:50px 0">
         <div class="w3-half w3-container">
             <div class="w3-topbar w3-container w3-card w3-white w3-border-orange">
@@ -474,26 +505,29 @@
                 <h3>Infection Possibility</h3>
                 <div class="w3-row-padding" style="margin:0 -16px;">
                     <div class="w3-half w3-margin-bottom">
-                        <p id="risk">Risk</p>
+                        <p id="risk"></p>
                     </div>
-                    
+
                 </div>
                 <div class="w3-row-padding" style="margin:8px -16px;">
                     <div class="w3-half w3-margin-bottom">
-                        <!-- <input class="w3-input w3-border" type="number" value="1" name="Adults" min="1" max="6"> -->
-                        <button id="run" onclick="Calculate()">Calculate</button>
+                        <!-- <button id="run" onclick="Calculate()">Calculate</button> -->
                     </div>
-                    
+
                 </div>
             </div>
         </div>
-        
+
     </div>
-  
     <script>
-        function setDefault(){
+        
+    </script>
+
+
+    <script>
+        function setDefault() {
             var roomType = document.getElementById("roomType").value;
-            switch (roomType){
+            switch (roomType) {
                 case "office":
                     roomArea = 20;
                     break;
@@ -512,9 +546,9 @@
             document.getElementById("roomArea").value = roomArea;
         }
 
-        function setDisease(){
+        function setDisease() {
             var disease = document.getElementById("disease").value;
-            switch (disease){
+            switch (disease) {
                 case "covid":
                     quanta = 100;
                     break;
@@ -539,9 +573,9 @@
             document.getElementById("quanta").value = quanta;
         }
 
-        function setActivity(){
+        function setActivity() {
             var activity = document.getElementById("activity").value;
-            switch (activity){
+            switch (activity) {
                 case "sleeping":
                     inhalation = 0.2;
                     break;
@@ -563,7 +597,14 @@
             document.getElementById("inhalation").value = inhalation;
         }
 
-        function Calculate(){
+        // let elementsArray = document.querySelectorAll("input");
+        
+        // elementsArray.forEach(function (elem) {
+        //     elem.addEventListener("oninput", Calculate());
+        // });
+
+        setInterval(
+        function Calculate() {
             var supply = document.getElementById("supply").value;
             var returnFrac = document.getElementById("returnFrac").value;
             var infector = document.getElementById("infector").value;
@@ -574,8 +615,8 @@
             var qf = supply - qr;
 
             var filter = document.getElementById("filter").value;
-            
-            switch (filter){
+
+            switch (filter) {
                 case "none":
                     filterEff = 0;
                     break;
@@ -592,11 +633,11 @@
                     mask1 = 0;
             }
 
-            var q = qf + qr*filterEff;
+            var q = qf + qr * filterEff;
 
 
             var mask1 = document.getElementById("mask1").value;
-            switch (mask1){
+            switch (mask1) {
                 case "cloth":
                     mask1Eff = 0.5;
                     break;
@@ -612,12 +653,12 @@
                 default:
                     mask1Eff = 0;
             }
-            
 
-            
+
+
 
             var mask2 = document.getElementById("mask2").value;
-            switch (mask2){
+            switch (mask2) {
                 case "cloth":
                     mask2Eff = 0.5;
                     break;
@@ -634,13 +675,15 @@
                     mask2Eff = 0;
             }
 
-            var risk = 1 - Math.exp(-1*infector*quanta*inhalation*duration*(1-mask1Eff)*(1-mask2Eff)/q);
+            var risk = 1 - Math.exp(-1 * infector * quanta * inhalation * duration * (1 - mask1Eff) * (1 - mask2Eff) / q);
 
             // self.probability = 1 - math.exp(-1*self.infective*self.quanta*self.inhalation*self.duration*
             //                             (1 - self.mask1)*(1 - self.mask2)/self.V/eqACH)
 
-            document.getElementById("risk").innerHTML = 100*risk+'%';
+            document.getElementById("risk").innerHTML = 100 * risk + '%';
         }
+        ,100);
     </script>
 </body>
+
 </html>
