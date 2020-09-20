@@ -134,22 +134,49 @@ function init() {
     var group = new THREE.Group();
 
     for (var i = 0; i < 5000; i++) {
-        var height = Math.random()*20 + 3;
-        var geometry = new THREE.BoxBufferGeometry(Math.random()*10+5, height, Math.random()*10+5);
+        var a = Math.random()*10+5;
+        var b = Math.random()*20 + 3;
+        var c = Math.random()*10+5;
+        var px = Math.random() * 1600 - 800;
+        var pz = Math.random() * 1600 - 800;
+        if (px > -10 && px < 10 && pz > -10 && pz < 10)
+        {
+            b = b +20;
+            if (b>40)
+            {
+                b = b + 10;
+            }
+            
+        }
+        else if (px > -50 && px < 50 && pz > -50 && pz < 50 )
+        {
+            b = b + 10;
+            if (b>30)
+            {
+                b = b + 10;
+            }
+            
+        }
+        else if (px > -100 && px < 100 && pz > -100 && pz < 100 && b>21)
+        {
+            b = b + 20;
+        }
+        else if (px > -200 && px < 200 && pz > -200 && pz < 200 && b>20)
+        {
+            b = b + 10;
+        }
+        
+        var geometry = new THREE.BoxBufferGeometry(a, b, c);
         var mesh = new THREE.Mesh(geometry, material);
-        mesh.position.x = Math.random() * 1600 - 800;
-        mesh.position.y = height/2;
-        mesh.position.z = Math.random() * 1600 - 800;
+        mesh.position.x = px;
+        mesh.position.y = b/2;
+        mesh.position.z = pz;
         mesh.updateMatrix();
         mesh.matrixAutoUpdate = false;
         group.add(mesh);
-        
-
     }
     scene.add(group);
     
-    // camera.rotation.y += Math.PI*0.01;
-
     // lights
 
     var light = new THREE.DirectionalLight(0xffffff);
