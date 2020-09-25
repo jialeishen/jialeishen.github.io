@@ -425,10 +425,34 @@ function WellsRiley()
 }
 
 
+var strategies = 0;
+var s = document.getElementsByName("strategy");
+
+function addStrategy()
+{
+    if (strategies<s.length)
+    {
+        s[strategies].style.display = "block";
+        strategies+=1;
+    }
+    
+}
+
+function deleteStrategy()
+{
+    if (strategies>0)
+    {
+        strategies-=1;
+        s[strategies].style.display = "none";
+    }   
+    
+}
+
 
 mybutton = document.getElementById("myBtn");
 var stickyBar = document.getElementById("stickyBar");
 var sticky = stickyBar.offsetTop;
+
 
 
 
