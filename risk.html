@@ -4,7 +4,7 @@
 <head>
     <title>Infection Risk Estimation</title>
     <meta charset="utf-8">
-    <meta name="description" content="This is a page showing something cool.">
+    <meta name="description" content="This is a web-based infection risk estimation tool.">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.14.0/css/all.css">
@@ -148,7 +148,7 @@
                             required>
                             <optgroup label="Office building">
                                 <option value="office" selected>Office</option>
-                                <option value="conferenceRoom">Conference room</option>
+                                <option value="conferenceRoom" disabled>Conference room</option>
                             </optgroup>
                             <optgroup label="Education building">
                                 <option value="classroom">Classroom</option>
@@ -157,19 +157,25 @@
                                 <option value="hotelLobby">Lobby</option>
                                 <option value="hotelGuestRoom">Guest room</option>
                                 <option value="hotelBistro">Bistro</option>
+                                <option value="hotelBallroom">Ballroom</option>
                             </optgroup>
                             <optgroup label="Cruise Line">
                                 <option value="cruiseLineGuestRoom">Guest room</option>
                             </optgroup>
                         </select>
                     </div>
-
+                    <div class="w3-half w3-margin-bottom">
+                        <label for="duration"><i class="fal fa-clock"></i> Exposure duration (h)</label>
+                        <!-- <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required> -->
+                        <input class="w3-input w3-border" type="number" value="8" min="0" name="duration" id="duration"
+                            required>
+                    </div>
                 </div>
                 <div class="w3-row-padding" style="margin:8px -16px;">
                     <div class="w3-half w3-margin-bottom">
                         <label for="roomArea"><i class="fal fa-cube"></i> Area (m<sup>2</sup>)</label>
-                        <input class="w3-input w3-border" type="number" value="100" min="0" name="roomArea"
-                            id="roomArea" required>
+                        <input class="w3-input w3-border" type="number" value="500" min="0" name="roomArea"
+                            id="roomArea" oninput="setVent()" required>
                     </div>
                     <div class="w3-half w3-margin-bottom">
                         <label for="roomHeight"><i class="fal fa-ruler-vertical"></i> Height (m)</label>
@@ -210,8 +216,8 @@
                     <div class="w3-half w3-margin-bottom">
                         <label for="totalOccupant"><i class="fal fa-users"></i> Total (person)</label>
                         <!-- <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required> -->
-                        <input class="w3-input w3-border" type="number" value="100" min="1" name="totalOccupant"
-                            id="totalOccupant" required>
+                        <input class="w3-input w3-border" type="number" value="25" min="1" name="totalOccupant"
+                            id="totalOccupant" oninput="setVent()" required>
                     </div>
                     <div class="w3-half w3-margin-bottom">
                         <label for="infector"><i class="fal fa-users-medical"></i> Infector (person)</label>
@@ -227,9 +233,9 @@
                         <select class="w3-select w3-border" name="activity" id="activity" oninput="setActivity()"
                             required>
                             <option value="sleeping">Sleeping</option>
-                            <option value="sittingResting" selected>Sitting/Resting</option>
-                            <option value="walking">Walking</option>
-                            <option value="running">Running</option>
+                            <option value="sitting" selected>Sitting</option>
+                            <option value="walking">Light intensity (Walking)</option>
+                            <option value="running">Moderate intensity (Running)</option>
                             <option value="heavy">Heavy intensity</option>
                         </select>
                     </div>
@@ -271,56 +277,41 @@
                 <h3><i class="fal fa-fan"></i> HVAC System</h3>
                 <div class="w3-row-padding" style="margin:0 -16px;">
                     <div class="w3-half w3-margin-bottom">
-                        <label for="ventRatePerPerson"><i class="fal fa-wind"></i> Required fresh air
-                            (m<sup>3</sup>/h&middot;person)</label>
-                        <!-- <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckIn" required> -->
-                        <input class="w3-input w3-border" type="number" value="100" min="0" name="ventRatePerPerson"
-                            id="ventRatePerPerson" required>
+                        <label for="supply"><i class="fal fa-air-conditioner"></i> Total supply air
+                            (m<sup>3</sup>/h)</label>
+                        <input class="w3-input w3-border" type="number" value="3060" min="0" name="supply" id="supply"
+                            required>
                     </div>
                     <div class="w3-half w3-margin-bottom">
                         <label for="returnFrac"><i class="fal fa-repeat"></i> Return air fraction (%)</label>
-                        <input class="w3-input w3-border" type="number" value="25" min="0" max="100" name="returnFrac"
+                        <input class="w3-input w3-border" type="number" value="75" min="0" max="100" name="returnFrac"
                             id="returnFrac" required>
                     </div>
                 </div>
                 <div class="w3-row-padding" style="margin:8px -16px;">
                     <div class="w3-half w3-margin-bottom">
-                        <label for="supply"><i class="fal fa-air-conditioner"></i> Total supply air
-                            (m<sup>3</sup>/h)</label>
-                        <input class="w3-input w3-border" type="number" value="100" min="0" name="supply" id="supply"
-                            required>
-                    </div>
-                    <div class="w3-half w3-margin-bottom">
                         <label for="filter"><i class="fal fa-container-storage"></i> Filter</label>
                         <select class="w3-select w3-border" name="filter" id="filter" required>
                             <option value="none" selected>None</option>
-                            <option value="merv1">MERV1</option>
-                            <option value="merv2">MERV2</option>
-                            <option value="merv3">MERV3</option>
+                            <option value="MERV1">MERV1</option>
+                            <option value="MERV2">MERV2</option>
+                            <option value="MERV3">MERV3</option>
+                            <option value="MERV4">MERV4</option>
+                            <option value="MERV5">MERV5</option>
+                            <option value="MERV6">MERV6</option>
+                            <option value="MERV7">MERV7</option>
+                            <option value="MERV8">MERV8</option>
+                            <option value="MERV9">MERV9</option>
+                            <option value="MERV10">MERV10</option>
+                            <option value="MERV11">MERV11</option>
+                            <option value="MERV12">MERV12</option>
+                            <option value="MERV13">MERV13</option>
+                            <option value="MERV14">MERV14</option>
+                            <option value="MERV15">MERV15</option>
+                            <option value="MERV16">MERV16</option>
+                            <option value="HEPA">HEPA</option>
                         </select>
                     </div>
-                </div>
-                <div class="w3-row-padding" style="margin:8px -16px;">
-
-                    <div class="w3-half w3-margin-bottom">
-                        <label for="ventMode"><i class="fal fa-fan-table"></i> Ventilation mode</label>
-                        <select class="w3-select w3-border" name="ventMode" id="ventMode" oninput="SetVentMode()"
-                            required>
-                            <option value="mixing" selected>Mixing</option>
-                            <option value="displacement">Displacement</option>
-                            <option value="personal">Personal</option>
-                            <option value="mixingPersonal">Mixing+Personal</option>
-                            <option value="displacementPersonal">Displacement+Personal</option>
-                        </select>
-                    </div>
-                    <div class="w3-half w3-margin-bottom">
-                        <label for="ventEff"><i class="fal fa-leaf"></i> Ventilation efficiency</label>
-                        <input class="w3-input w3-border" type="number" value="1" min="0" name="ventEff" id="ventEff"
-                            required>
-                    </div>
-                </div>
-                <div class="w3-row-padding" style="margin:8px -16px;">
-
                     <div class="w3-half w3-margin-bottom">
                         <label for="hvacFrac"><i class="fal fa-clock"></i> Operation duration (%)</label>
                         <!-- <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required> -->
@@ -354,6 +345,25 @@
 
                             <!-- <input type="range" tabindex="0" value="0" max="100" min="0" step="1" id="uvgiFrac"> -->
                         </div>
+                    </div>
+                </div>
+                <div class="w3-row-padding" style="margin:8px -16px;">
+
+                    <div class="w3-half w3-margin-bottom">
+                        <label for="ventMode"><i class="fal fa-fan-table"></i> Ventilation mode</label>
+                        <select class="w3-select w3-border" name="ventMode" id="ventMode" oninput="SetVentMode()"
+                            required>
+                            <option value="mixing" selected>Mixing</option>
+                            <option value="displacement">Displacement</option>
+                            <option value="personal">Personal</option>
+                            <option value="mixingPersonal">Mixing+Personal</option>
+                            <option value="displacementPersonal">Displacement+Personal</option>
+                        </select>
+                    </div>
+                    <div class="w3-half w3-margin-bottom">
+                        <label for="ventEff"><i class="fal fa-leaf"></i> Ventilation efficiency</label>
+                        <input class="w3-input w3-border" type="number" value="1" min="0" name="ventEff" id="ventEff"
+                            required>
                     </div>
                 </div>
             </div>
@@ -478,12 +488,7 @@
                         <input class="w3-radio" type="radio" name="model" id="model" value="unsteady">
                         <label>Unsteady-state</label>
                     </div>
-                    <div class="w3-half w3-margin-bottom">
-                        <label for="duration"><i class="fal fa-clock"></i> Exposure duration (h)</label>
-                        <!-- <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required> -->
-                        <input class="w3-input w3-border" type="number" value="8" min="0" name="duration" id="duration"
-                            required>
-                    </div>
+                    
                 </div>
 
             </div>
@@ -525,25 +530,120 @@
 
 
     <script>
+        var outAirPerPerson = 2.5*3.6; // 2.5L/s-person --> 2.5*3.6m3/h-person --> ASHRAE standard
+        var outAirPerArea = 0.3*3.6;
+
         function setDefault() {
             var roomType = document.getElementById("roomType").value;
             switch (roomType) {
                 case "office":
-                    roomArea = 20;
+                    roomArea = 500;
+                    roomHeight = 3;
+                    occupantDensity = 0.05; // 5persons/100m2 --> ASHRAE standard
+                    duration = 8;
+                    activityIndex = 1;
+                    inhalation = 0.3;
+                    outAirPerPerson = 2.5*3.6; // 2.5L/s-person --> 2.5*3.6m3/h-person --> ASHRAE standard
+                    outAirPerArea = 0.3*3.6;
+                    break;
+                case "conferenceRoom":
+                    roomArea = 100;
+                    roomHeight = 3;
+                    occupantDensity = 0.05;
+                    duration = 8;
+                    activityIndex = 1;
+                    inhalation = 0.3;
+                    outAirPerPerson = 2.5*3.6;
+                    outAirPerArea = 0.3*3.6;
                     break;
                 case "classroom":
-                    roomArea = 10;
+                    roomArea = 100;
+                    roomHeight = 3;
+                    occupantDensity = 0.35;
+                    duration = 8;
+                    activityIndex = 1;
+                    inhalation = 0.3;
+                    outAirPerPerson = 5*3.6;
+                    outAirPerArea = 0.6*3.6;
                     break;
                 case "hotelGuestRoom":
-                    roomArea = 10;
+                    roomArea = 25;
+                    roomHeight = 3;
+                    occupantDensity = 0.1;
+                    duration = 10;
+                    activityIndex = 1;
+                    inhalation = 0.3;
+                    outAirPerPerson = 2.5*3.6;
+                    outAirPerArea = 0.3*3.6;
+                    break;
+                case "hotelLobby":
+                    roomArea = 1308;
+                    roomHeight = 6;
+                    occupantDensity = 0.3;
+                    duration = 0.5;
+                    activityIndex = 1;
+                    inhalation = 0.3;
+                    outAirPerPerson = 3.8*3.6;
+                    outAirPerArea = 0.3*3.6;
+                    break;
+                case "hotelBistro":
+                    roomArea = 189;
+                    roomHeight = 6;
+                    occupantDensity = 0.3;
+                    duration = 1;
+                    activityIndex = 1;
+                    inhalation = 0.3;
+                    outAirPerPerson = 3.8*3.6;
+                    outAirPerArea = 0.3*3.6;
+                    break;
+                case "hotelBallroom":
+                    roomArea = 200;
+                    roomHeight = 6;
+                    occupantDensity = 0.3;
+                    duration = 2;
+                    activityIndex = 2;
+                    inhalation = 0.7;
+                    outAirPerPerson = 3.8*3.6;
+                    outAirPerArea = 0.3*3.6;
                     break;
                 case "cruiseLineGuestRoom":
-                    roomArea = 20;
+                    roomArea = 15;
+                    roomHeight = 3;
+                    occupantDensity = 0.1;
+                    duration = 10;
+                    activityIndex = 1;
+                    inhalation = 0.3;
+                    outAirPerPerson = 2.5*3.6;
+                    outAirPerArea = 0.3*3.6;
                     break;
                 default:
                     roomArea = 0;
+                    roomHeight = 0;
+                    occupantDensity = 0;
+                    duration = 0;
+                    activityIndex = 1;
+                    inhalation = 0.3;
+                    outAirPerPerson = 0;
             }
             document.getElementById("roomArea").value = roomArea;
+            document.getElementById("roomHeight").value = roomHeight;
+            document.getElementById("totalOccupant").value = Math.ceil(occupantDensity * roomArea);
+            document.getElementById("duration").value = duration;
+            document.getElementById("activity").selectedIndex = activityIndex;
+            document.getElementById("inhalation").value = inhalation;
+            // document.getElementById("ventRatePerPerson").value = ventRatePerPerson;
+            setVent();
+        }
+
+        function setVent()
+        {
+            var supply = 0;
+            var returnFrac = document.getElementById("returnFrac").value;
+            var totalOccupant = document.getElementById("totalOccupant").value;
+            var roomArea = document.getElementById("roomArea").value;
+            var outAirTotal = outAirPerPerson*totalOccupant + outAirPerArea*roomArea;
+            supply = outAirTotal/(1 - returnFrac/100);
+            document.getElementById("supply").value = supply;
         }
 
         function setDisease() {
@@ -577,19 +677,19 @@
             var activity = document.getElementById("activity").value;
             switch (activity) {
                 case "sleeping":
-                    inhalation = 0.2;
+                    inhalation = 0.3;
                     break;
-                case "sittingResting":
+                case "sitting":
                     inhalation = 0.3;
                     break;
                 case "walking":
-                    inhalation = 0.5;
+                    inhalation = 0.7;
                     break;
                 case "running":
-                    inhalation = 1.0;
+                    inhalation = 1.6;
                     break;
                 case "heavy":
-                    inhalation = 1.5;
+                    inhalation = 3.0;
                     break;
                 default:
                     inhalation = 0;
@@ -618,19 +718,99 @@
 
             switch (filter) {
                 case "none":
-                    filterEff = 0;
+                    filterEff03_1 = 0;
+                    filterEff1_3 = 0;
+                    filterEff3_10 = 0.1;
                     break;
                 case "MERV1":
-                    filterEff = 0.1;
+                    filterEff03_1 = 0;
+                    filterEff1_3 = 0;
+                    filterEff3_10 = 0.1;
                     break;
                 case "MERV2":
-                    filterEff = 0.2;
+                    filterEff03_1 = 0;
+                    filterEff1_3 = 0;
+                    filterEff3_10 = 0.1;
                     break;
                 case "MERV3":
-                    filterEff = 0.3;
+                    filterEff03_1 = 0;
+                    filterEff1_3 = 0;
+                    filterEff3_10 = 0.1;
+                    break;
+                case "MERV4":
+                    filterEff03_1 = 0;
+                    filterEff1_3 = 0;
+                    filterEff3_10 = 0.1;
+                    break;
+                case "MERV5":
+                    filterEff03_1 = 0.03;
+                    filterEff1_3 = 0.17;
+                    filterEff3_10 = 0.2;
+                    break;
+                case "MERV6":
+                    filterEff03_1 = 0.03;
+                    filterEff1_3 = 0.17;
+                    filterEff3_10 = 0.35;
+                    break;
+                case "MERV7":
+                    filterEff03_1 = 0.09;
+                    filterEff1_3 = 0.17;
+                    filterEff3_10 = 0.5;
+                    break;
+                case "MERV8":
+                    filterEff03_1 = 0.09;
+                    filterEff1_3 = 0.2;
+                    filterEff3_10 = 0.7;
+                    break;
+                case "MERV9":
+                    filterEff03_1 = 0.09;
+                    filterEff1_3 = 0.35;
+                    filterEff3_10 = 0.85;
+                    break;
+                case "MERV10":
+                    filterEff03_1 = 0.09;
+                    filterEff1_3 = 0.5;
+                    filterEff3_10 = 0.85;
+                    break;
+                case "MERV11":
+                    filterEff03_1 = 0.2;
+                    filterEff1_3 = 0.65;
+                    filterEff3_10 = 0.85;
+                    break;
+                case "MERV12":
+                    filterEff03_1 = 0.35;
+                    filterEff1_3 = 0.8;
+                    filterEff3_10 = 0.9;
+                    break;
+                case "MERV13":
+                    filterEff03_1 = 0.5;
+                    filterEff1_3 = 0.9;
+                    filterEff3_10 = 0.9;
+                    break;
+                case "MERV14":
+                    filterEff03_1 = 0.85;
+                    filterEff1_3 = 0.9;
+                    filterEff3_10 = 0.9;
+                    break;
+                case "MERV15":
+                    filterEff03_1 = 0.95;
+                    filterEff1_3 = 0.95;
+                    filterEff3_10 = 0.95;
+                    break;
+                case "MERV16":
+                    filterEff03_1 = 0.75;
+                    filterEff1_3 = 0.9;
+                    filterEff3_10 = 0.9;
+                    break;
+                case "HEPA":
+                    filterEff03_1 = 0.999;
+                    filterEff1_3 = 0.999;
+                    filterEff3_10 = 0.999;
                     break;
                 default:
-                    mask1 = 0;
+                    filterEff03_1 = 0;
+                    filterEff1_3 = 0;
+                    filterEff3_10 = 0;
             }
 
             var q = qf + qr * filterEff;

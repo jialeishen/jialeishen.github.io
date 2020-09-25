@@ -106,15 +106,15 @@ function init() {
 
     camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000);
     camera.position.set(-400, 50, 0);
-    
+
 
     // controls
-    
+
     controls = new OrbitControls(camera, renderer.domElement);
 
     //controls.addEventListener( 'change', render ); // call this only in static scenes (i.e., if there is no animation loop)
     controls.autoRotate = true;
-    controls.autoRotateSpeed = Math.PI/180*25;
+    controls.autoRotateSpeed = Math.PI / 180 * 25;
     controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
     controls.dampingFactor = 0.05;
 
@@ -125,7 +125,7 @@ function init() {
 
     controls.maxPolarAngle = Math.PI / 2;
 
-    
+
 
     // world
 
@@ -134,49 +134,43 @@ function init() {
     var group = new THREE.Group();
 
     for (var i = 0; i < 5000; i++) {
-        var a = Math.random()*10+5;
-        var b = Math.random()*20 + 3;
-        var c = Math.random()*10+5;
+        var a = Math.random() * 10 + 5;
+        var b = Math.random() * 20 + 3;
+        var c = Math.random() * 10 + 5;
         var px = Math.random() * 1600 - 800;
         var pz = Math.random() * 1600 - 800;
-        if (px > -10 && px < 10 && pz > -10 && pz < 10)
-        {
-            b = b +20;
-            if (b>40)
-            {
+        if (px > -10 && px < 10 && pz > -10 && pz < 10) {
+            b = b + 20;
+            if (b > 40) {
                 b = b + 10;
             }
-            
+
         }
-        else if (px > -50 && px < 50 && pz > -50 && pz < 50 )
-        {
+        else if (px > -50 && px < 50 && pz > -50 && pz < 50) {
             b = b + 10;
-            if (b>30)
-            {
+            if (b > 30) {
                 b = b + 10;
             }
-            
+
         }
-        else if (px > -100 && px < 100 && pz > -100 && pz < 100 && b>21)
-        {
+        else if (px > -100 && px < 100 && pz > -100 && pz < 100 && b > 21) {
             b = b + 20;
         }
-        else if (px > -200 && px < 200 && pz > -200 && pz < 200 && b>20)
-        {
+        else if (px > -200 && px < 200 && pz > -200 && pz < 200 && b > 20) {
             b = b + 10;
         }
-        
+
         var geometry = new THREE.BoxBufferGeometry(a, b, c);
         var mesh = new THREE.Mesh(geometry, material);
         mesh.position.x = px;
-        mesh.position.y = b/2;
+        mesh.position.y = b / 2;
         mesh.position.z = pz;
         mesh.updateMatrix();
         mesh.matrixAutoUpdate = false;
         group.add(mesh);
     }
     scene.add(group);
-    
+
     // lights
 
     var light = new THREE.DirectionalLight(0xffffff);
