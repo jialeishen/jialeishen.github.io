@@ -5,93 +5,93 @@ function setDefault() {
     var roomType = document.getElementById("roomType").value;
     switch (roomType) {
         case "office":
-            roomArea = 500;
-            roomHeight = 3;
+            roomArea = 500.0;
+            roomHeight = 3.0;
             occupantDensity = 0.05; // 5persons/100m2 --> ASHRAE standard
-            duration = 8;
-            activityIndex = 1;
+            duration = 8.0;
+            activityIndex = 1.0;
             inhalation = 0.3;
             outAirPerPerson = 2.5*3.6; // 2.5L/s-person --> 2.5*3.6m3/h-person --> ASHRAE standard
             outAirPerArea = 0.3*3.6;
             break;
         case "conferenceRoom":
-            roomArea = 100;
-            roomHeight = 3;
+            roomArea = 100.0;
+            roomHeight = 3.0;
             occupantDensity = 0.05;
-            duration = 8;
-            activityIndex = 1;
+            duration = 8.0;
+            activityIndex = 1.0;
             inhalation = 0.3;
             outAirPerPerson = 2.5*3.6;
             outAirPerArea = 0.3*3.6;
             break;
         case "classroom":
-            roomArea = 100;
-            roomHeight = 3;
+            roomArea = 100.0;
+            roomHeight = 3.0;
             occupantDensity = 0.35;
-            duration = 8;
-            activityIndex = 1;
+            duration = 8.0;
+            activityIndex = 1.0;
             inhalation = 0.3;
             outAirPerPerson = 5*3.6;
             outAirPerArea = 0.6*3.6;
             break;
         case "hotelGuestRoom":
-            roomArea = 25;
-            roomHeight = 3;
+            roomArea = 25.0;
+            roomHeight = 3.0;
             occupantDensity = 0.1;
-            duration = 10;
-            activityIndex = 1;
+            duration = 10.0;
+            activityIndex = 1.0;
             inhalation = 0.3;
             outAirPerPerson = 2.5*3.6;
             outAirPerArea = 0.3*3.6;
             break;
         case "hotelLobby":
-            roomArea = 1308;
-            roomHeight = 6;
+            roomArea = 1308.0;
+            roomHeight = 6.0;
             occupantDensity = 0.3;
             duration = 0.5;
-            activityIndex = 1;
+            activityIndex = 1.0;
             inhalation = 0.3;
             outAirPerPerson = 3.8*3.6;
             outAirPerArea = 0.3*3.6;
             break;
         case "hotelBistro":
-            roomArea = 189;
-            roomHeight = 6;
+            roomArea = 189.0;
+            roomHeight = 6.0;
             occupantDensity = 0.3;
-            duration = 1;
-            activityIndex = 1;
+            duration = 1.0;
+            activityIndex = 1.0;
             inhalation = 0.3;
             outAirPerPerson = 3.8*3.6;
             outAirPerArea = 0.3*3.6;
             break;
         case "hotelBallroom":
-            roomArea = 200;
-            roomHeight = 6;
+            roomArea = 200.0;
+            roomHeight = 6.0;
             occupantDensity = 0.3;
-            duration = 2;
-            activityIndex = 2;
+            duration = 2.0;
+            activityIndex = 2.0;
             inhalation = 0.7;
             outAirPerPerson = 3.8*3.6;
             outAirPerArea = 0.3*3.6;
             break;
         case "cruiseLineGuestRoom":
-            roomArea = 15;
-            roomHeight = 3;
+            roomArea = 15.0;
+            roomHeight = 3.0;
             occupantDensity = 0.1;
-            duration = 10;
-            activityIndex = 1;
+            duration = 10.0;
+            activityIndex = 1.0;
             inhalation = 0.3;
             outAirPerPerson = 2.5*3.6;
             outAirPerArea = 0.3*3.6;
             break;
         default:
-            roomArea = 0;
-            roomHeight = 0;
-            occupantDensity = 0;
-            duration = 0;
-            activityIndex = 1;
+            roomArea = 0.0;
+            roomHeight = 0.0;
+            occupantDensity = 0.0;
+            duration = 0.0;
+            activityIndex = 1.0;
             inhalation = 0.3;
-            outAirPerPerson = 0;
+            outAirPerPerson = 0.0;
     }
     document.getElementById("roomArea").value = roomArea;
     document.getElementById("roomHeight").value = roomHeight;
@@ -105,12 +105,12 @@ function setDefault() {
 
 function setVent()
 {
-    var supply = 0;
-    var returnFrac = document.getElementById("returnFrac").value;
-    var totalOccupant = document.getElementById("totalOccupant").value;
-    var roomArea = document.getElementById("roomArea").value;
-    var outAirTotal = outAirPerPerson*totalOccupant + outAirPerArea*roomArea;
-    supply = outAirTotal/(1 - returnFrac/100);
+    var supply = 0.0;
+    var returnFrac = parseFloat(document.getElementById("returnFrac").value);
+    var totalOccupant = parseFloat(document.getElementById("totalOccupant").value);
+    var roomArea = parseFloat(document.getElementById("roomArea").value);
+    var outAirTotal = parseFloat(outAirPerPerson*totalOccupant + outAirPerArea*roomArea);
+    supply = outAirTotal/(1.0 - returnFrac/100.0);
     document.getElementById("supply").value = supply;
 }
 
@@ -118,25 +118,25 @@ function setDisease() {
     var disease = document.getElementById("disease").value;
     switch (disease) {
         case "covid":
-            quanta = 100;
+            quanta = 100.0;
             break;
         case "influenza":
-            quanta = 100;
+            quanta = 100.0;
             break;
         case "rhinovirus":
-            quanta = 5;
+            quanta = 5.0;
             break;
         case "tb":
-            quanta = 13;
+            quanta = 13.0;
             break;
         case "sars":
-            quanta = 150;
+            quanta = 150.0;
             break;
         case "measles":
-            quanta = 3000;
+            quanta = 3000.0;
             break;
         default:
-            quanta = 0;
+            quanta = 0.0;
     }
     document.getElementById("quanta").value = quanta;
 }
@@ -177,19 +177,19 @@ function SetVentMode()
 
     switch (ventMode) {
         case "mixing":
-            ventEff = 1;
+            ventEff = 1.0;
             break;
         case "displacement":
             ventEff = 1.5;
             break;
         case "personal":
-            ventEff = 5;
+            ventEff = 5.0;
             break;
         case "displacementPersonal":
             ventEff = 7.5;
             break;
         default:
-            ventEff = 0;
+            ventEff = 0.0;
     }
     document.getElementById("ventEff").value = ventEff;
 }
@@ -200,13 +200,13 @@ function SetRoomConfiguration()
 
     switch (roomConfiguration) {
         case "open":
-            ventEffRoomConfiguration = 1;
+            ventEffRoomConfiguration = 1.0;
             break;
         case "semiopen":
             ventEffRoomConfiguration = 2.5;
             break;
         default:
-            ventEffRoomConfiguration = 0;
+            ventEffRoomConfiguration = 0.0;
     }
     document.getElementById("ventEffRoomConfiguration").value = ventEffRoomConfiguration;
 }
@@ -390,11 +390,32 @@ function Calculate() {
     var risk = 1 - Math.exp(-1 * infector * quanta * inhalation * duration * (1 - mask1Eff) * (1 - mask2Eff) / roomVolumn/eqACH);
     risk = 100*risk;
     risk = risk.toFixed(3);
+
+    var riskUnsteady = 1 - Math.exp(-1 * infector * quanta * inhalation * (1 - mask1Eff) * (1 - mask2Eff) / roomVolumn*((eqACH*duration + Math.exp(-1*duration*eqACH)-1)/eqACH**2));
+    riskUnsteady = 100*riskUnsteady;
+    riskUnsteady = riskUnsteady.toFixed(3);
     // self.probability = 1 - math.exp(-1*self.infective*self.quanta*self.inhalation*self.duration*
     //                             (1 - self.mask1)*(1 - self.mask2)/self.V/eqACH)
 
-    document.getElementById("risk").innerHTML = risk + '%';
-    document.getElementById("stickyBarMini").innerHTML = risk + '%';
+    var modelValue;
+    var models = document.getElementsByName("simModel");
+    for (var i = 0, length = models.length; i < length; i++) 
+    {
+        if(models[i].checked)
+        {
+            modelValue = models[i].value;
+        }
+    }
+    if (modelValue == "steady")
+    {
+        var risk0 = risk;
+    }
+    else
+    {
+        var risk0 = riskUnsteady;
+    }
+    document.getElementById("risk").innerHTML = risk0 + '%';
+    // document.getElementById("stickyBarMini").innerHTML = risk + '%';
 }
 ,100);
 
@@ -402,8 +423,6 @@ function WellsRiley()
 {
 
 }
-
-
 
 
 

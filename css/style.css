@@ -247,11 +247,11 @@ div[slider] > input[type=range]::-ms-tooltip {
   background: palegoldenrod; */
 }
 
-.stickyBottom {
+/* .stickyBottom {
   position: -webkit-sticky;
   position: sticky;
   bottom: 0;
-}
+} */
 
 #risk{
   font-size: x-large;
