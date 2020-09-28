@@ -415,7 +415,7 @@ function Calculate() {
         var risk0 = riskUnsteady;
     }
     document.getElementById("risk").innerHTML = risk0 + '%';
-    document.getElementById("tempShow").innerHTML =parameterAnalysisPanel2Top;
+    
 }
 ,100);
 
