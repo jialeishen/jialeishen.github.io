@@ -21,6 +21,7 @@
             font-family: "Raleway", Arial, Helvetica, sans-serif
         }
     </style>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
 </head>
 
 <body class="w3-light-grey">
@@ -39,7 +40,7 @@
         <div class="w3-padding w3-col">
             <button class="accordion w3-padding w3-col w3-container w3-amber" style="font-size: x-large;"><b>Input</b></button>
             <div class="w3-padding w3-col" style="display: block;">
-                <button class="accordion w3-padding w3-col w3-container w3-amber" style="font-size: medium;"><b>Basic model</b></button>
+                <button class="accordion w3-padding w3-col w3-container w3-amber" style="font-size: medium;"><b>Base model</b></button>
                 <div style="display: block;">
                     <div class="w3-row w3-container" style="margin:50px 0">
                         <div class="w3-topbar w3-container w3-card w3-white w3-border-amber">
@@ -971,12 +972,12 @@
 
 
 
-    <div class="w3-half w3-container" id="stickyBar">
+    <div class="w3-half w3-container" >
         <div class="w3-padding w3-col">
             <button class="accordion w3-padding w3-col w3-container w3-orange" style="font-size: x-large;"><b>Output</b></button>
             <div class="w3-padding w3-col" style="display: block;">
-                <button class="accordion w3-padding w3-col w3-container w3-orange" style="font-size: medium;"><b>Results</b></button>
-                <div style="display: block;">
+                <button class="accordion w3-padding w3-col w3-container w3-orange" style="font-size: medium;"><b>Base model results</b></button>
+                <div style="display: block;" id="stickyBar">
                     <div class="w3-row w3-container" style="margin:50px 0">
                         <div class="w3-topbar w3-container w3-card w3-white w3-border-orange">
                             <!-- <img src="/w3images/cellphone.jpg" style="width:100%"> -->
@@ -986,7 +987,7 @@
                                     <p id="risk">Risk cannot be estimated</p>
                                 </div>
                                 
-                                <div class="w3-center w3-margin-bottom">
+                                <div class="w3-center w3-margin-bottom" id="simModelSelection">
                                     <input class="w3-radio" type="radio" name="simModel" value="steady" checked="checked">
                                     <label>Steady-state</label>
                                     
@@ -996,12 +997,53 @@
                                 
             
                             </div>
-                            <div class="w3-row-padding" style="margin:8px -16px;">
-                                <div class="w3-half w3-margin-bottom">
-                                    <!-- <button id="run" onclick="Calculate()">Calculate</button> -->
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            <div class="w3-padding w3-col" style="display: block;" id="parameterAnalysisPanel">
+                <button class="accordion w3-padding w3-col w3-container w3-orange" style="font-size: medium;"><b>Parameter analysis</b></button>
+                <div style="display: block;">
+                    <div class="w3-row w3-container" style="margin:50px 0">
+                        <div class="w3-topbar w3-container w3-card w3-white w3-border-orange">
+                            <!-- <img src="/w3images/cellphone.jpg" style="width:100%"> -->
+                            <h3>Infection Possibility</h3>
+                            <div class="w3-row-padding" style="margin:0 -16px;">
+                                <div class="w3-center w3-margin-bottom">
+                                    <p id="tempShow">Risk cannot be estimated</p>
                                 </div>
+                                
+                                
+                                
             
                             </div>
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            <div class="w3-padding w3-col" style="display: none;" id="strategyAnalysis">
+                <button class="accordion w3-padding w3-col w3-container w3-orange" style="font-size: medium;"><b>Strategy analysis</b></button>
+                <div style="display: block;">
+                    <div class="w3-row w3-container" style="margin:50px 0">
+                        <div class="w3-topbar w3-container w3-card w3-white w3-border-orange">
+                            <!-- <img src="/w3images/cellphone.jpg" style="width:100%"> -->
+                            <h3>Infection Possibility</h3>
+                            <div class="w3-row-padding" style="margin:0 -16px;">
+                                <div class="w3-center w3-margin-bottom">
+                                    <p>Risk cannot be estimated</p>
+                                </div>
+                                
+                                
+                                
+            
+                            </div>
+                            
                         </div>
                     </div>
                     
@@ -1013,6 +1055,8 @@
         
     </div>
 
+
+
     <!-- <div id="stickyBarMini">Risk cannot be estimated</div> -->
 
 
@@ -1022,9 +1066,7 @@
 
     <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button> 
 
-    <script src="js/risk.js">
-           
-    </script>
+    <script src="js/risk.js"></script>
 </body>
 
 </html>

@@ -415,7 +415,7 @@ function Calculate() {
         var risk0 = riskUnsteady;
     }
     document.getElementById("risk").innerHTML = risk0 + '%';
-    // document.getElementById("stickyBarMini").innerHTML = risk + '%';
+    document.getElementById("tempShow").innerHTML =parameterAnalysisPanel2Top;
 }
 ,100);
 
@@ -448,12 +448,17 @@ function deleteStrategy()
     
 }
 
+if (strategies>0)
+{
+    document.getElementById("strategyAnalysis").style.display = "block";
+}
+
 
 mybutton = document.getElementById("myBtn");
 var stickyBar = document.getElementById("stickyBar");
 var sticky = stickyBar.offsetTop;
 
-
+var parameterAnalysisPanel2Top = document.getElementById("parameterAnalysisPanel").offsetTop;
 
 
 // When the user scrolls down 20px from the top of the document, show the button
@@ -468,12 +473,15 @@ if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
 
 
 if (window.pageYOffset >= sticky && window.innerWidth >=600) {
-    stickyBar.classList.add("sticky")
+    stickyBar.classList.add("sticky");
+    document.getElementById("simModelSelection").style.display = "none";
+    document.getElementById("parameterAnalysisPanel").style.margin = "246px 0"
   } else {
     stickyBar.classList.remove("sticky");
+    document.getElementById("simModelSelection").style.display = "block";
+    document.getElementById("parameterAnalysisPanel").style.margin = "0 0"
   }
 }
-
 
 
 // When the user clicks on the button, scroll to the top of the document
