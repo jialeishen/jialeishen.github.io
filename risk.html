@@ -248,7 +248,7 @@
                             <div class="w3-row-padding" style="margin:8px -16px;">
                                 <div class="w3-half w3-margin-bottom">
                                     <label for="mask1"><i class="fal fa-head-side-mask"></i> Mask (infector)</label>
-                                    <select class="w3-select w3-border" name="mask1" id="mask1" required>
+                                    <select class="w3-select w3-border" name="mask1" id="mask1" oninput="setMask1()" required>
                                         <option value="none" selected>None</option>
                                         <option value="cloth">Cloth</option>
                                         <option value="surgical">Surgical</option>
@@ -256,15 +256,31 @@
                                     </select>
                                 </div>
                                 <div class="w3-half w3-margin-bottom">
+                                    <label for="maskEff1"><i class="fal fa-head-side-mask"></i> Mask efficiency - infector (%)</label>
+                                    <!-- <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required> -->
+                                    <input class="w3-input w3-border" type="number" value="0" min="0" max="100" step="1" name="maskEff1"
+                                        id="maskEff1" required>
+                                </div>
+                            </div>
+
+                            <div class="w3-row-padding" style="margin:8px -16px;">
+                                <div class="w3-half w3-margin-bottom">
                                     <label for="mask2"><i class="fal fa-head-side-mask"></i> Mask (susceptible)</label>
-                                    <select class="w3-select w3-border" name="mask2" id="mask2" required>
+                                    <select class="w3-select w3-border" name="mask2" id="mask2" oninput="setMask2()" required>
                                         <option value="none" selected>None</option>
                                         <option value="cloth">Cloth</option>
                                         <option value="surgical">Surgical</option>
                                         <option value="n95">N95</option>
                                     </select>
                                 </div>
+                                <div class="w3-half w3-margin-bottom">
+                                    <label for="maskEff2"><i class="fal fa-head-side-mask"></i> Mask efficiency - susceptible (%)</label>
+                                    <!-- <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required> -->
+                                    <input class="w3-input w3-border" type="number" value="0" min="0" max="100" step="1" name="maskEff2"
+                                        id="maskEff2" required>
+                                </div>
                             </div>
+
                         </div>
                     </div>
                     <div class="w3-row w3-container" style="margin:50px 0">
@@ -976,7 +992,7 @@
         <div class="w3-padding w3-col">
             <button class="accordion w3-padding w3-col w3-container w3-orange" style="font-size: x-large;"><b>Output</b></button>
             <div class="w3-padding w3-col" style="display: block;">
-                <button class="accordion w3-padding w3-col w3-container w3-orange" style="font-size: medium;"><b>Base model results</b></button>
+                <button class="accordion w3-padding w3-col w3-container w3-orange" style="font-size: medium;" id="baseModelResults"><b>Base model results</b></button>
                 <div style="display: block;" id="stickyBar">
                     <div class="w3-row w3-container" style="margin:50px 0">
                         <div class="w3-topbar w3-container w3-card w3-white w3-border-orange">
@@ -1002,11 +1018,9 @@
                     </div>
                     
                 </div>
-                
-            </div>
-            <div class="w3-padding w3-col" style="display: block;" id="parameterAnalysisPanel">
-                <button class="accordion w3-padding w3-col w3-container w3-orange" style="font-size: medium;"><b>Parameter analysis</b></button>
-                <div style="display: block;">
+
+                <button class="accordion w3-padding w3-col w3-container w3-orange" style="font-size: medium; display: block;" id="parameterAnalysisPanel"><b>Parameter analysis</b></button>
+                <div style="display: block;" id="parameterAnalysisPanel2">
                     <div class="w3-row w3-container" style="margin:50px 0">
                         <div class="w3-topbar w3-container w3-card w3-white w3-border-orange">
                             <!-- <img src="/w3images/cellphone.jpg" style="width:100%"> -->
@@ -1025,11 +1039,9 @@
                     </div>
                     
                 </div>
-                
-            </div>
-            <div class="w3-padding w3-col" style="display: none;" id="strategyAnalysis">
-                <button class="accordion w3-padding w3-col w3-container w3-orange" style="font-size: medium;"><b>Strategy analysis</b></button>
-                <div style="display: block;">
+
+                <button class="accordion w3-padding w3-col w3-container w3-orange" style="font-size: medium;display: none;" id="strategyAnalysis"><b>Strategy analysis</b></button>
+                <div style="display: none;" id="strategyAnalysis2">
                     <div class="w3-row w3-container" style="margin:50px 0">
                         <div class="w3-topbar w3-container w3-card w3-white w3-border-orange">
                             <!-- <img src="/w3images/cellphone.jpg" style="width:100%"> -->
@@ -1050,19 +1062,20 @@
                 </div>
                 
             </div>
+            
         </div>
         
         
     </div>
 
-
-
-    <!-- <div id="stickyBarMini">Risk cannot be estimated</div> -->
-
-
-
-
-        
+    <div class="w3-row w3-container sticky" style="margin:50px 0; display: none;" id="miniBar">
+        <div class="w3-topbar w3-container w3-card w3-white w3-border-orange">
+            <h5>Infection Possibility</h5>
+            <div class="w3-center">
+                <p id="riskMini">Risk cannot be estimated</p>
+            </div>
+        </div>
+    </div>
 
     <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button> 
 

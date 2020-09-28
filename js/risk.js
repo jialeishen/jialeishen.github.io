@@ -211,6 +211,52 @@ function SetRoomConfiguration()
     document.getElementById("ventEffRoomConfiguration").value = ventEffRoomConfiguration;
 }
 
+function setMask1(){
+    var mask1 = document.getElementById("mask1").value;
+
+    switch (mask1) {
+        case "none":
+            maskEff1 = 0;
+            break;
+        case "cloth":
+            maskEff1 = 50;
+            break;
+        case "surgical":
+            maskEff1 = 70;
+            break;
+        case "n95":
+            maskEff1 = 95;
+            break;
+        default:
+            maskEff1 = 0;
+    }
+    document.getElementById("maskEff1").value = maskEff1;    
+}
+
+
+function setMask2(){
+    var mask2 = document.getElementById("mask2").value;
+
+    switch (mask2) {
+        case "none":
+            maskEff2 = 0;
+            break;
+        case "cloth":
+            maskEff2 = 50;
+            break;
+        case "surgical":
+            maskEff2 = 70;
+            break;
+        case "n95":
+            maskEff2 = 95;
+            break;
+        default:
+            maskEff2 = 0;
+    }
+    document.getElementById("maskEff2").value = maskEff2;    
+}
+
+
 setInterval(
 function Calculate() {
     var quanta = parseFloat(document.getElementById("quanta").value);
@@ -224,6 +270,8 @@ function Calculate() {
     var totalOccupant = parseFloat(document.getElementById("totalOccupant").value);
     var infector = parseFloat(document.getElementById("infector").value);
     var inhalation = parseFloat(document.getElementById("inhalation").value);
+    var maskEff1 = parseFloat(document.getElementById("maskEff1").value)/100.0;
+    var maskEff2 = parseFloat(document.getElementById("maskEff2").value)/100.0;
     var supply = parseFloat(document.getElementById("supply").value);
     var returnFrac = parseFloat(document.getElementById("returnFrac").value/100.0);
     var hvacFrac = parseFloat(document.getElementById("hvacFrac").value/100.0);
@@ -332,41 +380,7 @@ function Calculate() {
             filterEff3_10 = 0;
     }
 
-    var mask1 = document.getElementById("mask1").value;
-    switch (mask1) {
-        case "cloth":
-            mask1Eff = 0.5;
-            break;
-        case "surgical":
-            mask1Eff = 0.75;
-            break;
-        case "n95":
-            mask1Eff = 0.95;
-            break;
-        case "none":
-            mask1Eff = 0.0;
-            break;
-        default:
-            mask1Eff = 0.0;
-    }
-
-    var mask2 = document.getElementById("mask2").value;
-    switch (mask2) {
-        case "cloth":
-            mask2Eff = 0.5;
-            break;
-        case "surgical":
-            mask2Eff = 0.75;
-            break;
-        case "n95":
-            mask2Eff = 0.95;
-            break;
-        case "none":
-            mask2Eff = 0.0;
-            break;
-        default:
-            mask2Eff = 0.0;
-    }
+    
 
     var dp03_1 = 0.55; // (0.3+1)/2; geometric mean diameter
     var deposit03_1 = 0.108 * dp03_1 ** 2 * (1 + 0.166 / dp03_1) / roomHeight;
@@ -387,11 +401,11 @@ function Calculate() {
     var eqACH = uvgi + (Qf/roomVolumn + filtration)*ventEff*ventEffRoomConfiguration+deposit+airCleaner/roomVolumn;
 
     
-    var risk = 1 - Math.exp(-1 * infector * quanta * inhalation * duration * (1 - mask1Eff) * (1 - mask2Eff) / roomVolumn/eqACH);
+    var risk = 1 - Math.exp(-1 * infector * quanta * inhalation * duration * (1 - maskEff1) * (1 - maskEff2) / roomVolumn/eqACH);
     risk = 100*risk;
     risk = risk.toFixed(3);
 
-    var riskUnsteady = 1 - Math.exp(-1 * infector * quanta * inhalation * (1 - mask1Eff) * (1 - mask2Eff) / roomVolumn*((eqACH*duration + Math.exp(-1*duration*eqACH)-1)/eqACH**2));
+    var riskUnsteady = 1 - Math.exp(-1 * infector * quanta * inhalation * (1 - maskEff1) * (1 - maskEff2) / roomVolumn*((eqACH*duration + Math.exp(-1*duration*eqACH)-1)/eqACH**2));
     riskUnsteady = 100*riskUnsteady;
     riskUnsteady = riskUnsteady.toFixed(3);
     // self.probability = 1 - math.exp(-1*self.infective*self.quanta*self.inhalation*self.duration*
@@ -415,6 +429,7 @@ function Calculate() {
         var risk0 = riskUnsteady;
     }
     document.getElementById("risk").innerHTML = risk0 + '%';
+    document.getElementById("riskMini").innerHTML = risk0 + '%';
     
 }
 ,100);
@@ -435,6 +450,7 @@ function addStrategy()
         s[strategies].style.display = "block";
         strategies+=1;
     }
+    showStrategyAnalysis();
     
 }
 
@@ -445,21 +461,28 @@ function deleteStrategy()
         strategies-=1;
         s[strategies].style.display = "none";
     }   
-    
+    showStrategyAnalysis()
 }
 
-if (strategies>0)
+function showStrategyAnalysis()
 {
-    document.getElementById("strategyAnalysis").style.display = "block";
+    if (strategies>0)
+    {
+        document.getElementById("strategyAnalysis").style.display = "block";
+        document.getElementById("strategyAnalysis2").style.display = "block";
+    }
+    else
+    {
+        document.getElementById("strategyAnalysis").style.display = "none";
+        document.getElementById("strategyAnalysis2").style.display = "none";
+    }
 }
+
 
 
 mybutton = document.getElementById("myBtn");
 var stickyBar = document.getElementById("stickyBar");
 var sticky = stickyBar.offsetTop;
-
-var parameterAnalysisPanel2Top = document.getElementById("parameterAnalysisPanel").offsetTop;
-
 
 // When the user scrolls down 20px from the top of the document, show the button
 window.onscroll = function() {scrollFunction()};
@@ -473,13 +496,17 @@ if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
 
 
 if (window.pageYOffset >= sticky && window.innerWidth >=600) {
-    stickyBar.classList.add("sticky");
-    document.getElementById("simModelSelection").style.display = "none";
-    document.getElementById("parameterAnalysisPanel").style.margin = "246px 0"
+    document.getElementById("miniBar").style.display = "block";
+    // stickyBar.classList.add("sticky");
+    // document.getElementById("simModelSelection").style.display = "none";
+    // document.getElementById("parameterAnalysisPanel").style.margin = "246px 0"
+    // document.getElementById("parameterAnalysisPanel2").style.margin = "246px 0"
   } else {
-    stickyBar.classList.remove("sticky");
-    document.getElementById("simModelSelection").style.display = "block";
-    document.getElementById("parameterAnalysisPanel").style.margin = "0 0"
+    document.getElementById("miniBar").style.display = "none";
+    // stickyBar.classList.remove("sticky");
+    // document.getElementById("simModelSelection").style.display = "block";
+    // document.getElementById("parameterAnalysisPanel").style.margin = "0 0"
+    // document.getElementById("parameterAnalysisPanel2").style.margin = "0 0"
   }
 }
 

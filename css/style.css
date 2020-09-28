@@ -259,6 +259,12 @@ div[slider] > input[type=range]::-ms-tooltip {
   color: orangered;
 }
 
+#riskMini{
+  font-size: large;
+  font-weight: bolder;
+  color: orangered;
+}
+
 #stickyBarMini{
   font-size: medium;
   font-weight: bolder;
