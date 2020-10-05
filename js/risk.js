@@ -219,10 +219,10 @@ function setMask1(){
             maskEff1 = 0;
             break;
         case "cloth":
-            maskEff1 = 50;
+            maskEff1 = 30;
             break;
         case "surgical":
-            maskEff1 = 70;
+            maskEff1 = 50;
             break;
         case "n95":
             maskEff1 = 95;
@@ -242,10 +242,10 @@ function setMask2(){
             maskEff2 = 0;
             break;
         case "cloth":
-            maskEff2 = 50;
+            maskEff2 = 30;
             break;
         case "surgical":
-            maskEff2 = 70;
+            maskEff2 = 50;
             break;
         case "n95":
             maskEff2 = 95;
