@@ -21,15 +21,17 @@
             font-family: "Raleway", Arial, Helvetica, sans-serif
         }
     </style>
-    <script src="https://d3js.org/d3.v6.min.js"></script>
+    
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </head>
 
 <body class="w3-light-grey">
     <div class="w3-display-container" style="margin-bottom:10px">
         <img src="img/covid.jpg" alt="COVID-19" style="width:100%">
         <div class="w3-display-bottomleft w3-container w3-amber w3-hide-small" style="bottom:10%;opacity:0.7;width:70%">
-            <h2><b>Infection Risk Estimation</h2>
-            <h4><b>Airborne Transmission</h4>
+            <h2><b>Infection Risk Estimation for Airborne Transmission</h2>
+            <h4><b>by <a href="https://beesl.syr.edu/">BEESL</a> & <a href="http://bestlab.syr.edu/">BEST</a> Lab @ Syracuse University</h4>
         </div>
     </div>
 
@@ -385,7 +387,7 @@
                             <h3><i class="fal fa-microwave"></i> Devices</h3>
                             <div class="w3-row-padding" style="margin:0 -16px;">
                                 <div class="w3-half w3-margin-bottom">
-                                    <label for="airCleaner"><i class="fal fa-fan-table"></i> Air cleaner (CADR)</label>
+                                    <label for="airCleaner"><i class="fal fa-fan-table"></i> Air cleaner (CADR, m<sup>3</sup>/h)</label>
                                     <!-- <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required> -->
                                     <input class="w3-input w3-border" type="number" value="0" min="0" name="airCleaner"
                                         id="airCleaner" required>
@@ -476,6 +478,235 @@
                 </div>
 
                 
+                <button class="accordion w3-padding w3-col w3-container w3-amber" style="font-size: medium;"><b>Parameter analysis</b></button>
+                <div style="display: none;">
+
+                    <div class="w3-row w3-container" style="margin:50px 0;" name="parameter">
+                        <div class="w3-topbar w3-container w3-card w3-white w3-border-amber">
+                            <!-- <img src="/w3images/sealions.jpg" style="width:100%"> -->
+                            <h3 class="tooltip"><i class="fal fa-cogs"></i> Control parameter analysis<span class="tooltiptext">Analyzing the effect of control parameters on risk (3 parameters maximum)</span></h3>
+                            <div class="w3-row-padding" style="margin:0 -16px;">
+                                <div class="w3-margin-bottom">
+                                    <input class="w3-check" type="checkbox" name="analysisParameters" id="totalSupplyAir">
+                                    <label for="totalSupplyAir" class="tooltip" name="analysisParametersLabels"> HVAC total supply air (m<sup>3</sup>/h)<span class="tooltiptext">100% duration time assumed</span></label><br>
+                                </div>
+                                
+                            </div>
+                            <div class="w3-row-padding" style="margin:8px -16px; display: none;" id="totalSupplyAirPanel">
+                                <div class="w3-quarter w3-margin-bottom">
+                                    <label for="totalSupplyAirValue1">a.</label>
+                                    <input class="w3-input w3-border" type="number" value="0" min="0" name="totalSupplyAirValue" id="totalSupplyAirValue1">
+                                </div>
+                                <div class="w3-quarter w3-margin-bottom">
+                                    <label for="totalSupplyAirValue2">b.</label>
+                                    <input class="w3-input w3-border" type="number" value="0" min="0" name="totalSupplyAirValue" id="totalSupplyAirValue2">
+                                </div>
+                                <div class="w3-quarter w3-margin-bottom">
+                                    <label for="totalSupplyAirValue3">c.</label>
+                                    <input class="w3-input w3-border" type="number" value="0" min="0" name="totalSupplyAirValue" id="totalSupplyAirValue3">
+                                </div>
+                                <div class="w3-quarter w3-margin-bottom">
+                                    <label for="totalSupplyAirValue4">d.</label>
+                                    <input class="w3-input w3-border" type="number" value="0" min="0" name="totalSupplyAirValue" id="totalSupplyAirValue4">
+                                </div>
+                                
+                            </div>
+            
+                            <div class="w3-row-padding" style="margin:8px -16px;">
+                                <div class="w3-margin-bottom">
+                                    <input class="w3-check" type="checkbox" name="analysisParameters" id="returnAirFraction">
+                                    <label for="returnAirFraction" class="tooltip" name="analysisParametersLabels"> HVAC return air fraction (%)<span class="tooltiptext">100% duration time assumed</span></label><br>
+                                </div>
+                                
+                            </div>
+                            <div class="w3-row-padding" style="margin:8px -16px; display: none;" id="returnAirFractionPanel">
+                                <div class="w3-quarter w3-margin-bottom">
+                                    <label for="returnAirFraction1">a.</label>
+                                    <input class="w3-input w3-border" type="number" value="0" min="0" max="100" name="returnAirFraction"
+                                        id="returnAirFraction1">
+                                </div>
+                                <div class="w3-quarter w3-margin-bottom">
+                                    <label for="returnAirFraction2">b.</label>
+                                    <input class="w3-input w3-border" type="number" value="0" min="0" max="100" name="returnAirFraction"
+                                        id="returnAirFraction2">
+                                </div>
+                                <div class="w3-quarter w3-margin-bottom">
+                                    <label for="returnAirFraction3">c.</label>
+                                    <input class="w3-input w3-border" type="number" value="0" min="0" max="100" name="returnAirFraction"
+                                        id="returnAirFraction3">
+                                </div>
+                                <div class="w3-quarter w3-margin-bottom">
+                                    <label for="returnAirFraction4">d.</label>
+                                    <input class="w3-input w3-border" type="number" value="0" min="0" max="100" name="returnAirFraction"
+                                        id="returnAirFraction4">
+                                </div>
+                            </div>
+
+                            <div class="w3-row-padding" style="margin:8px -16px;">
+                                <div class="w3-margin-bottom">
+                                    <input class="w3-check" type="checkbox" name="analysisParameters" id="hvacFilter">
+                                    <label for="hvacFilter" class="tooltip" name="analysisParametersLabels"> HVAC filter<span class="tooltiptext">100% duration time assumed</span></label><br>
+                                </div>
+                                
+                            </div>
+                            <div class="w3-row-padding" style="margin:8px -16px; display: none;" id="hvacFilterPanel">
+                                <div class="w3-quarter w3-margin-bottom">
+                                    <label for="hvacFilter1">a.</label>
+                                    <select class="w3-select w3-border" name="hvacFilter" id="hvacFilter1">
+                                        <option value="none" selected>None</option>
+                                        <option value="MERV1">MERV1</option>
+                                        <option value="MERV2">MERV2</option>
+                                        <option value="MERV3">MERV3</option>
+                                        <option value="MERV4">MERV4</option>
+                                        <option value="MERV5">MERV5</option>
+                                        <option value="MERV6">MERV6</option>
+                                        <option value="MERV7">MERV7</option>
+                                        <option value="MERV8">MERV8</option>
+                                        <option value="MERV9">MERV9</option>
+                                        <option value="MERV10">MERV10</option>
+                                        <option value="MERV11">MERV11</option>
+                                        <option value="MERV12">MERV12</option>
+                                        <option value="MERV13">MERV13</option>
+                                        <option value="MERV14">MERV14</option>
+                                        <option value="MERV15">MERV15</option>
+                                        <option value="MERV16">MERV16</option>
+                                        <option value="HEPA">HEPA</option>
+                                    </select>
+                                </div>
+                                <div class="w3-quarter w3-margin-bottom">
+                                    <label for="hvacFilter2">b.</label>
+                                    <select class="w3-select w3-border" name="hvacFilter" id="hvacFilter2">
+                                        <option value="none" selected>None</option>
+                                        <option value="MERV1">MERV1</option>
+                                        <option value="MERV2">MERV2</option>
+                                        <option value="MERV3">MERV3</option>
+                                        <option value="MERV4">MERV4</option>
+                                        <option value="MERV5">MERV5</option>
+                                        <option value="MERV6">MERV6</option>
+                                        <option value="MERV7">MERV7</option>
+                                        <option value="MERV8">MERV8</option>
+                                        <option value="MERV9">MERV9</option>
+                                        <option value="MERV10">MERV10</option>
+                                        <option value="MERV11">MERV11</option>
+                                        <option value="MERV12">MERV12</option>
+                                        <option value="MERV13">MERV13</option>
+                                        <option value="MERV14">MERV14</option>
+                                        <option value="MERV15">MERV15</option>
+                                        <option value="MERV16">MERV16</option>
+                                        <option value="HEPA">HEPA</option>
+                                    </select>
+                                </div>
+                                <div class="w3-quarter w3-margin-bottom">
+                                    <label for="hvacFilter3">c.</label>
+                                    <select class="w3-select w3-border" name="hvacFilter" id="hvacFilter3">
+                                        <option value="none" selected>None</option>
+                                        <option value="MERV1">MERV1</option>
+                                        <option value="MERV2">MERV2</option>
+                                        <option value="MERV3">MERV3</option>
+                                        <option value="MERV4">MERV4</option>
+                                        <option value="MERV5">MERV5</option>
+                                        <option value="MERV6">MERV6</option>
+                                        <option value="MERV7">MERV7</option>
+                                        <option value="MERV8">MERV8</option>
+                                        <option value="MERV9">MERV9</option>
+                                        <option value="MERV10">MERV10</option>
+                                        <option value="MERV11">MERV11</option>
+                                        <option value="MERV12">MERV12</option>
+                                        <option value="MERV13">MERV13</option>
+                                        <option value="MERV14">MERV14</option>
+                                        <option value="MERV15">MERV15</option>
+                                        <option value="MERV16">MERV16</option>
+                                        <option value="HEPA">HEPA</option>
+                                    </select>
+                                </div>
+                                <div class="w3-quarter w3-margin-bottom">
+                                    <label for="hvacFilter4">d.</label>
+                                    <select class="w3-select w3-border" name="hvacFilter" id="hvacFilter4">
+                                        <option value="none" selected>None</option>
+                                        <option value="MERV1">MERV1</option>
+                                        <option value="MERV2">MERV2</option>
+                                        <option value="MERV3">MERV3</option>
+                                        <option value="MERV4">MERV4</option>
+                                        <option value="MERV5">MERV5</option>
+                                        <option value="MERV6">MERV6</option>
+                                        <option value="MERV7">MERV7</option>
+                                        <option value="MERV8">MERV8</option>
+                                        <option value="MERV9">MERV9</option>
+                                        <option value="MERV10">MERV10</option>
+                                        <option value="MERV11">MERV11</option>
+                                        <option value="MERV12">MERV12</option>
+                                        <option value="MERV13">MERV13</option>
+                                        <option value="MERV14">MERV14</option>
+                                        <option value="MERV15">MERV15</option>
+                                        <option value="MERV16">MERV16</option>
+                                        <option value="HEPA">HEPA</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="w3-row-padding" style="margin:8px -16px;">
+                                <div class="w3-margin-bottom">
+                                    <input class="w3-check" type="checkbox" name="analysisParameters" id="airCleanerSupply">
+                                    <label for="airCleanerSupply" class="tooltip" name="analysisParametersLabels"> Air cleaner CADR (m<sup>3</sup>/h)<span class="tooltiptext">100% duration time assumed</span></label><br>
+                                </div>
+                                
+                            </div>
+                            <div class="w3-row-padding" style="margin:8px -16px; display: none;" id="airCleanerSupplyPanel">
+                                <div class="w3-quarter w3-margin-bottom">
+                                    <label for="airCleanerSupply1">a.</label>
+                                    <input class="w3-input w3-border" type="number" value="0" min="0" name="airCleanerSupply" id="airCleanerSupply1">
+                                </div>
+                                <div class="w3-quarter w3-margin-bottom">
+                                    <label for="airCleanerSupply2">b.</label>
+                                    <input class="w3-input w3-border" type="number" value="0" min="0" name="airCleanerSupply" id="airCleanerSupply2">
+                                </div>
+                                <div class="w3-quarter w3-margin-bottom">
+                                    <label for="airCleanerSupply3">c.</label>
+                                    <input class="w3-input w3-border" type="number" value="0" min="0" name="airCleanerSupply" id="airCleanerSupply3">
+                                </div>
+                                <div class="w3-quarter w3-margin-bottom">
+                                    <label for="airCleanerSupply4">d.</label>
+                                    <input class="w3-input w3-border" type="number" value="0" min="0" name="airCleanerSupply" id="airCleanerSupply4">
+                                </div>
+                                
+                            </div>
+
+
+                            <div class="w3-row-padding" style="margin:8px -16px;">
+                                <div class="w3-margin-bottom">
+                                    <input class="w3-check" type="checkbox" name="analysisParameters" id="upperUVGI">
+                                    <label for="upperUVGI" class="tooltip" name="analysisParametersLabels"> Upper-room UVGI (h<sup>-1</sup>)<span class="tooltiptext">100% duration time assumed</span></label><br>
+                                </div>
+                                
+                            </div>
+                            <div class="w3-row-padding" style="margin:8px -16px; display: none;" id="upperUVGIPanel">
+                                <div class="w3-quarter w3-margin-bottom">
+                                    <label for="upperUVGI1">a.</label>
+                                    <input class="w3-input w3-border" type="number" value="0" min="0" name="upperUVGI" id="upperUVGI1">
+                                </div>
+                                <div class="w3-quarter w3-margin-bottom">
+                                    <label for="upperUVGI2">b.</label>
+                                    <input class="w3-input w3-border" type="number" value="0" min="0" name="upperUVGI" id="upperUVGI2">
+                                </div>
+                                <div class="w3-quarter w3-margin-bottom">
+                                    <label for="upperUVGI3">c.</label>
+                                    <input class="w3-input w3-border" type="number" value="0" min="0" name="upperUVGI" id="upperUVGI3">
+                                </div>
+                                <div class="w3-quarter w3-margin-bottom">
+                                    <label for="upperUVGI4">d.</label>
+                                    <input class="w3-input w3-border" type="number" value="0" min="0" name="upperUVGI" id="upperUVGI4">
+                                </div>
+                                
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+
                 <button class="accordion w3-padding w3-col w3-container w3-amber" style="font-size: medium;"><b>Strategies</b></button>
                 <div style="display: none;">
 
@@ -582,7 +813,7 @@
                                 <div style="display: none;">
                                     <div class="w3-row-padding" style="margin:0 -16px;">
                                         <div class="w3-half w3-margin-bottom">
-                                            <label for="airCleaner"><i class="fal fa-fan-table"></i> Air cleaner (CADR)</label>
+                                            <label for="airCleaner"><i class="fal fa-fan-table"></i> Air cleaner (CADR, m<sup>3</sup>/h)</label>
                                             <!-- <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required> -->
                                             <input class="w3-input w3-border" type="number" value="0" min="0" name="airCleaner"
                                                 id="airCleaner0" required>
@@ -821,7 +1052,7 @@
                                 <div style="display: none;">
                                     <div class="w3-row-padding" style="margin:0 -16px;">
                                         <div class="w3-half w3-margin-bottom">
-                                            <label for="airCleaner"><i class="fal fa-fan-table"></i> Air cleaner (CADR)</label>
+                                            <label for="airCleaner"><i class="fal fa-fan-table"></i> Air cleaner (CADR, m<sup>3</sup>/h)</label>
                                             <!-- <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required> -->
                                             <input class="w3-input w3-border" type="number" value="0" min="0" name="airCleaner"
                                                 id="airCleaner0" required>
@@ -972,6 +1203,13 @@
                         </div>
                     </div>
                 </div>
+
+
+
+                
+
+
+
                 <button class="accordion w3-padding w3-col w3-container w3-amber" style="font-size: medium;"><b>More</b></button>
                 <div style="display: none;">
                     <div class="w3-row w3-container" style="margin:50px 0">
@@ -1024,11 +1262,19 @@
                     <div class="w3-row w3-container" style="margin:50px 0">
                         <div class="w3-topbar w3-container w3-card w3-white w3-border-orange">
                             <!-- <img src="/w3images/cellphone.jpg" style="width:100%"> -->
-                            <h3>Parameter analysis</h3>
+                            <h3>Control parameter analysis</h3>
                             <div class="w3-row-padding" style="margin:0 -16px;">
                                 <div class="w3-center w3-margin-bottom">
-                                    <p>Parameter analysis</p>
+                                    <p id="tempText">Control parameter analysis</p>
                                 </div>
+                                <div class="w3-center" id="plotContainer">
+                                    <div class="w3-center" style="height: 0; width: 0;" id="plot0"></div>
+                                    <div class="w3-center" style="height: 0; width: 0;" id="plot1"></div>
+                                    <div class="w3-center" style="height: 0; width: 0;" id="plot2"></div>
+                                    <div class="w3-center" style="height: 0; width: 0;" id="plot3"></div>
+                                    <div class="w3-center" style="height: 0; width: 0;" id="plot4"></div>
+                                </div>
+                                
                                 
                                 
                                 
@@ -1080,6 +1326,7 @@
     <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button> 
 
     <script src="js/risk.js"></script>
+    
 </body>
 
 </html>

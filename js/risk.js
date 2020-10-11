@@ -256,6 +256,9 @@ function setMask2(){
     document.getElementById("maskEff2").value = maskEff2;    
 }
 
+var individuals = [];
+var individualsInputs = [];
+var analysisParametersCheckedIndex = [];
 
 setInterval(
 function Calculate() {
@@ -287,7 +290,7 @@ function Calculate() {
         case "none":
             filterEff03_1 = 0.0;
             filterEff1_3 = 0.0;
-            filterEff3_10 = 0.1;
+            filterEff3_10 = 0.0;
             break;
         case "MERV1":
             filterEff03_1 = 0.0;
@@ -411,6 +414,402 @@ function Calculate() {
     // self.probability = 1 - math.exp(-1*self.infective*self.quanta*self.inhalation*self.duration*
     //                             (1 - self.mask1)*(1 - self.mask2)/self.V/eqACH)
 
+    var parameterTotalSupplyAir = document.getElementById("totalSupplyAir");
+    if (parameterTotalSupplyAir.checked)
+    {
+        document.getElementById("totalSupplyAirPanel").style.display = "block";
+    }
+    else
+    {
+        document.getElementById("totalSupplyAirPanel").style.display = "none";
+    }
+
+    var parameterReturnAirFraction = document.getElementById("returnAirFraction");
+    if (parameterReturnAirFraction.checked)
+    {
+        document.getElementById("returnAirFractionPanel").style.display = "block";
+    }
+    else
+    {
+        document.getElementById("returnAirFractionPanel").style.display = "none";
+    }
+
+    var parameterHvacFilter = document.getElementById("hvacFilter");
+    if (parameterHvacFilter.checked)
+    {
+        document.getElementById("hvacFilterPanel").style.display = "block";
+    }
+    else
+    {
+        document.getElementById("hvacFilterPanel").style.display = "none";
+    }
+
+    var parameterAirCleanerSupply = document.getElementById("airCleanerSupply");
+    if (parameterAirCleanerSupply.checked)
+    {
+        document.getElementById("airCleanerSupplyPanel").style.display = "block";
+    }
+    else
+    {
+        document.getElementById("airCleanerSupplyPanel").style.display = "none";
+    }
+
+    var parameterUpperUVGI = document.getElementById("upperUVGI");
+    if (parameterUpperUVGI.checked)
+    {
+        document.getElementById("upperUVGIPanel").style.display = "block";
+    }
+    else
+    {
+        document.getElementById("upperUVGIPanel").style.display = "none";
+    }
+
+    var totalSupplyAirValue = document.getElementsByName("totalSupplyAirValue");
+    var returnAirFraction = document.getElementsByName("returnAirFraction");
+    var hvacFilter = document.getElementsByName("hvacFilter");
+    var airCleanerSupply = document.getElementsByName("airCleanerSupply");
+    var upperUVGI = document.getElementsByName("upperUVGI");
+    
+    var totalSupplyAirValueValues = [];
+    var returnAirFractionValues = [];
+    var hvacFilterValues = [];
+    var airCleanerSupplyValues = [];
+    var upperUVGIValues = [];
+
+    var totalSupplyAirValueLabels = [];
+    var returnAirFractionLabels = [];
+    var hvacFilterLabels = [];
+    var airCleanerSupplyLabels = [];
+    var upperUVGILabels = [];
+
+    for(var i = 0; i<hvacFilter.length; i++)
+    {
+        totalSupplyAirValueValues[i] = totalSupplyAirValue[i].value;
+        returnAirFractionValues[i] = returnAirFraction[i].value/100;
+        airCleanerSupplyValues[i] = airCleanerSupply[i].value;
+        upperUVGIValues[i] = upperUVGI[i].value;
+
+        totalSupplyAirValueLabels[i] = totalSupplyAirValue[i].value;
+        returnAirFractionLabels[i] = returnAirFraction[i].value;
+        hvacFilterLabels[i] = hvacFilter[i].value;
+        airCleanerSupplyLabels[i] = airCleanerSupply[i].value;
+        upperUVGILabels[i] = upperUVGI[i].value;
+
+        switch (hvacFilter[i].value) {
+            case "none":
+                pfilterEff03_1 = 0.0;
+                pfilterEff1_3 = 0.0;
+                pfilterEff3_10 = 0.0;
+                break;
+            case "MERV1":
+                pfilterEff03_1 = 0.0;
+                pfilterEff1_3 = 0.0;
+                pfilterEff3_10 = 0.1;
+                break;
+            case "MERV2":
+                pfilterEff03_1 = 0.0;
+                pfilterEff1_3 = 0.0;
+                pfilterEff3_10 = 0.1;
+                break;
+            case "MERV3":
+                pfilterEff03_1 = 0.0;
+                pfilterEff1_3 = 0.0;
+                pfilterEff3_10 = 0.1;
+                break;
+            case "MERV4":
+                pfilterEff03_1 = 0.0;
+                pfilterEff1_3 = 0.0;
+                pfilterEff3_10 = 0.1;
+                break;
+            case "MERV5":
+                pfilterEff03_1 = 0.03;
+                pfilterEff1_3 = 0.17;
+                pfilterEff3_10 = 0.2;
+                break;
+            case "MERV6":
+                pfilterEff03_1 = 0.03;
+                pfilterEff1_3 = 0.17;
+                pfilterEff3_10 = 0.35;
+                break;
+            case "MERV7":
+                pfilterEff03_1 = 0.09;
+                pfilterEff1_3 = 0.17;
+                pfilterEff3_10 = 0.5;
+                break;
+            case "MERV8":
+                pfilterEff03_1 = 0.09;
+                pfilterEff1_3 = 0.2;
+                pfilterEff3_10 = 0.7;
+                break;
+            case "MERV9":
+                pfilterEff03_1 = 0.09;
+                pfilterEff1_3 = 0.35;
+                pfilterEff3_10 = 0.85;
+                break;
+            case "MERV10":
+                pfilterEff03_1 = 0.09;
+                pfilterEff1_3 = 0.5;
+                pfilterEff3_10 = 0.85;
+                break;
+            case "MERV11":
+                pfilterEff03_1 = 0.2;
+                pfilterEff1_3 = 0.65;
+                pfilterEff3_10 = 0.85;
+                break;
+            case "MERV12":
+                pfilterEff03_1 = 0.35;
+                pfilterEff1_3 = 0.8;
+                pfilterEff3_10 = 0.9;
+                break;
+            case "MERV13":
+                pfilterEff03_1 = 0.5;
+                pfilterEff1_3 = 0.9;
+                pfilterEff3_10 = 0.9;
+                break;
+            case "MERV14":
+                pfilterEff03_1 = 0.85;
+                pfilterEff1_3 = 0.9;
+                pfilterEff3_10 = 0.9;
+                break;
+            case "MERV15":
+                pfilterEff03_1 = 0.95;
+                pfilterEff1_3 = 0.95;
+                pfilterEff3_10 = 0.95;
+                break;
+            case "MERV16":
+                pfilterEff03_1 = 0.75;
+                pfilterEff1_3 = 0.9;
+                pfilterEff3_10 = 0.9;
+                break;
+            case "HEPA":
+                pfilterEff03_1 = 0.999;
+                pfilterEff1_3 = 0.999;
+                pfilterEff3_10 = 0.999;
+                break;
+            default:
+                pfilterEff03_1 = 0;
+                pfilterEff1_3 = 0;
+                pfilterEff3_10 = 0;
+        }
+        var hvacEilterEff = pfilterEff03_1*p03_1 + pfilterEff1_3*p1_3 + pfilterEff3_10*p3_10;
+        hvacFilterValues[i] = hvacEilterEff;
+    }
+    // document.getElementById("tempText").innerHTML = returnAirFractionValues;
+
+    var parameterAnalysisValues = [];
+    parameterAnalysisValues[0] = totalSupplyAirValueValues;
+    parameterAnalysisValues[1] = returnAirFractionValues;
+    parameterAnalysisValues[2] = hvacFilterValues;
+    parameterAnalysisValues[3] = airCleanerSupplyValues;
+    parameterAnalysisValues[4] = upperUVGIValues;
+    // document.getElementById("tempText").innerHTML = parameterAnalysisValues[0][0];
+    var labels = [];
+    labels[0] = totalSupplyAirValueLabels;
+    labels[1] = returnAirFractionLabels;
+    labels[2] = hvacFilterLabels;
+    labels[3] = airCleanerSupplyLabels;
+    labels[4] = upperUVGILabels;
+
+    var analysisParameters = document.getElementsByName("analysisParameters");
+    analysisParametersCheckedIndex = [];
+    individuals = [];
+    individualsInputs = [];
+    var analysisParametersChecked = [];
+    var analysisParametersUnchecked = [];
+    var analysisParametersLabels = document.getElementsByName("analysisParametersLabels");
+    // var analysisParametersLabelsChecked = [];
+    var analysisParametersLabelsUnchecked = [];
+    for (var i=0;i<analysisParameters.length;i++){
+        if ( analysisParameters[i].checked ) {
+            analysisParametersChecked.push(analysisParameters[i]);
+            analysisParametersCheckedIndex.push(i);
+        }
+        else
+        {
+            analysisParametersUnchecked.push(analysisParameters[i]);
+            analysisParametersLabelsUnchecked.push(analysisParametersLabels[i]);
+        }
+    }
+    
+    if (analysisParametersChecked.length >=5)
+    {
+        analysisParametersUnchecked.forEach(function(e){e.disabled = true});
+        analysisParametersLabelsUnchecked.forEach(function(e){e.style = "color: lightgrey;"});
+        // analysisParametersUnchecked[0].disabled = true;
+    }
+    else
+    {
+        analysisParametersUnchecked.forEach(function(e){e.disabled = false});
+        analysisParametersLabelsUnchecked.forEach(function(e){e.style = "color: black;"});
+        // analysisParametersUnchecked[0].disabled = false;
+    }
+    
+    function paraAnalysis()
+    {
+
+    }
+
+    
+    for (var i = 0; i<analysisParametersCheckedIndex.length; i++)
+    {
+        individuals[i] = parameterAnalysisValues[analysisParametersCheckedIndex[i]];
+        individualsInputs[i] = labels[analysisParametersCheckedIndex[i]];
+        if (analysisParametersCheckedIndex[i]==0)
+        {
+            for (var j=0; j<individuals[i].length; j++)
+            {
+                var pQr = individuals[i][j] * returnFrac;
+                var pQf = individuals[i][j] - pQr;
+                var pfiltration = pQr/roomVolumn*filterEff;
+                var peqACH = uvgi + (pQf/roomVolumn + pfiltration)*ventEff*ventEffRoomConfiguration+deposit+airCleaner/roomVolumn;
+                var prisk = 1 - Math.exp(-1 * infector * quanta * inhalation * duration * (1 - maskEff1) * (1 - maskEff2) / roomVolumn/peqACH);
+                prisk = 100*prisk;
+                prisk = prisk.toFixed(3);
+
+                var priskUnsteady = 1 - Math.exp(-1 * infector * quanta * inhalation * (1 - maskEff1) * (1 - maskEff2) / roomVolumn*((peqACH*duration + Math.exp(-1*duration*peqACH)-1)/peqACH**2));
+                priskUnsteady = 100*priskUnsteady;
+                priskUnsteady = priskUnsteady.toFixed(3);
+                if (individuals[i][j]==0)
+                {
+                    individuals[i][j] = 0;
+                }
+                else
+                {
+                    individuals[i][j] = prisk;
+                }
+                
+            }
+
+        }
+        else if (analysisParametersCheckedIndex[i]==1)
+        {
+            for (var j=0; j<individuals[i].length; j++)
+            {
+                var pQr = supply * individuals[i][j];
+                var pQf = supply - pQr;
+                
+                var pfiltration = pQr/roomVolumn*filterEff;
+                
+                var peqACH = uvgi + (pQf/roomVolumn + pfiltration)*ventEff*ventEffRoomConfiguration+deposit+airCleaner/roomVolumn;
+            
+                var prisk = 1 - Math.exp(-1 * infector * quanta * inhalation * duration * (1 - maskEff1) * (1 - maskEff2) / roomVolumn/peqACH);
+                prisk = 100*prisk;
+                prisk = prisk.toFixed(3);
+            
+                var priskUnsteady = 1 - Math.exp(-1 * infector * quanta * inhalation * (1 - maskEff1) * (1 - maskEff2) / roomVolumn*((peqACH*duration + Math.exp(-1*duration*peqACH)-1)/peqACH**2));
+                priskUnsteady = 100*priskUnsteady;
+                priskUnsteady = priskUnsteady.toFixed(3);
+
+                if (individuals[i][j]==0)
+                {
+                    individuals[i][j] = 0;
+                }
+                else
+                {
+                    individuals[i][j] = prisk;
+                }
+                
+            }
+        }
+        else if (analysisParametersCheckedIndex[i]==2)
+        {
+            for (var j=0; j<individuals[i].length; j++)
+            {
+                // var Qr = supply * returnFrac;
+                // var Qf = supply - Qr;
+                
+                var pfiltration = Qr/roomVolumn*individuals[i][j];
+                
+                
+                var peqACH = uvgi + (Qf/roomVolumn + pfiltration)*ventEff*ventEffRoomConfiguration+deposit+airCleaner/roomVolumn;
+            
+                var prisk = 1 - Math.exp(-1 * infector * quanta * inhalation * duration * (1 - maskEff1) * (1 - maskEff2) / roomVolumn/peqACH);
+                prisk = 100*prisk;
+                prisk = prisk.toFixed(3);
+            
+                var priskUnsteady = 1 - Math.exp(-1 * infector * quanta * inhalation * (1 - maskEff1) * (1 - maskEff2) / roomVolumn*((peqACH*duration + Math.exp(-1*duration*peqACH)-1)/peqACH**2));
+                priskUnsteady = 100*priskUnsteady;
+                priskUnsteady = priskUnsteady.toFixed(3);
+
+                if (individuals[i][j]==0)
+                {
+                    individuals[i][j] = 0;
+                }
+                else
+                {
+                    individuals[i][j] = prisk;
+                }
+                
+            }
+        }
+        else if (analysisParametersCheckedIndex[i]==3)
+        {
+            for (var j=0; j<individuals[i].length; j++)
+            {
+                // var Qr = supply * returnFrac;
+                // var Qf = supply - Qr;
+                
+                // var filtration = Qr/roomVolumn*filterEff;
+                
+                
+                var peqACH = uvgi + (Qf/roomVolumn + filtration)*ventEff*ventEffRoomConfiguration+deposit+individuals[i][j]/roomVolumn;
+            
+                var prisk = 1 - Math.exp(-1 * infector * quanta * inhalation * duration * (1 - maskEff1) * (1 - maskEff2) / roomVolumn/peqACH);
+                prisk = 100*prisk;
+                prisk = prisk.toFixed(3);
+            
+                var priskUnsteady = 1 - Math.exp(-1 * infector * quanta * inhalation * (1 - maskEff1) * (1 - maskEff2) / roomVolumn*((peqACH*duration + Math.exp(-1*duration*peqACH)-1)/peqACH**2));
+                priskUnsteady = 100*priskUnsteady;
+                priskUnsteady = priskUnsteady.toFixed(3);
+
+                if (individuals[i][j]==0)
+                {
+                    individuals[i][j] = 0;
+                }
+                else
+                {
+                    individuals[i][j] = prisk;
+                }
+                
+            }
+        }
+        else if (analysisParametersCheckedIndex[i]==4)
+        {
+            for (var j=0; j<individuals[i].length; j++)
+            {
+                // var Qr = supply * returnFrac;
+                // var Qf = supply - Qr;
+                
+                // var filtration = Qr/roomVolumn*filterEff;
+                
+                
+                var peqACH = individuals[i][j] + (Qf/roomVolumn + filtration)*ventEff*ventEffRoomConfiguration+deposit+airCleaner/roomVolumn;
+            
+                var prisk = 1 - Math.exp(-1 * infector * quanta * inhalation * duration * (1 - maskEff1) * (1 - maskEff2) / roomVolumn/peqACH);
+                prisk = 100*prisk;
+                prisk = prisk.toFixed(3);
+            
+                var priskUnsteady = 1 - Math.exp(-1 * infector * quanta * inhalation * (1 - maskEff1) * (1 - maskEff2) / roomVolumn*((peqACH*duration + Math.exp(-1*duration*peqACH)-1)/peqACH**2));
+                priskUnsteady = 100*priskUnsteady;
+                priskUnsteady = priskUnsteady.toFixed(3);
+
+                if (individuals[i][j]==0)
+                {
+                    individuals[i][j] = 0;
+                }
+                else
+                {
+                    individuals[i][j] = prisk;
+                }
+                
+            }
+        }
+    }
+    // document.getElementById("tempText").innerHTML = individuals;
+    plot();
+
+    
+
     var modelValue;
     var models = document.getElementsByName("simModel");
     for (var i = 0, length = models.length; i < length; i++) 
@@ -434,11 +833,250 @@ function Calculate() {
 }
 ,100);
 
-function WellsRiley()
-{
 
+// var width = 300;
+//     var height = 300;
+//     var svg = d3.select("#svgcontainer")
+//         .append("svg")
+//         .attr("width", width)
+//         .attr("height", height);
+//     svg.append("line")
+//         .attr("x1", 100)
+//         .attr("y1", 100)
+//         .attr("x2", 200)
+//         .attr("y2", 200)
+//         .style("stroke", "rgb(255,0,0)")
+//         .style("stroke-width", 2);
+
+//     const chart = svg.append('g')
+//     .attr('transform', `translate(${margin}, ${margin})`);
+
+function plot()
+{
+    var plotTitles = ["HVAC total supply airflow rate", "HVAC return air fraction", "HVAC filter", "Air cleaner supply CADR", "Upper-room UVGI intensity"];
+    var plotXLabels = ["Airflow rate [m3/h]", "Return air fraction [%]", "Filter", "CADR [m3/h]", "UVGI intensity [/h]"];
+    // document.getElementById("tempText").innerHTML = "test";
+    var n = 0;
+    var chart = [];
+    var chartIndex = [];
+    // document.getElementById("tempText").innerHTML = "chart: " + chart.length + "| checkbox: " + analysisParametersCheckedIndex.length;
+    if (chart.length != analysisParametersCheckedIndex.length)
+    {
+        var plotContainer = document.getElementById("plotContainer");
+        for (var k =0; k< chart.length;k++)
+        {
+            chart[k].destroy();
+            
+        plotContainer.children[k].style.height = "0";
+        plotContainer.children[k].style.width = "0";
+        }
+        chart = [];
+
+    }
+
+    for (var i = 0; i<individuals.length;i++)
+    {
+        var data = [];
+    
+        for (var j=0; j<individuals[i].length; j++)
+        {
+            
+            
+            if (parseFloat(individualsInputs[i][j]) != 0 && individualsInputs[i][j] != "none")
+            {
+                var obj = new Object();
+                obj.label = individualsInputs[i][j];
+                obj.y = parseFloat(individuals[i][j]);
+                data.push(obj);
+            }
+            
+        }
+        
+        
+
+        var plotContainer = document.getElementById("plotContainer");
+        plotContainer.children[i].style.height = "300px";
+        plotContainer.children[i].style.width = "100%";
+
+        chartIndex[i] = analysisParametersCheckedIndex[i];
+
+        chart[i] = new CanvasJS.Chart(plotContainer.children[i].id, {
+            title:{
+                text: plotTitles[analysisParametersCheckedIndex[i]]              
+            },
+            axisX:{
+                // interlacedColor: "rgba(1,77,101,.2)",
+                // gridColor: "rgba(1,77,101,.1)",
+                title: plotXLabels[analysisParametersCheckedIndex[i]] 
+            },
+            axisY:{
+                // interlacedColor: "rgba(1,77,101,.2)",
+                gridColor: "rgba(1,77,101,.1)",
+                title: "Risk [%]"
+            },
+            data: [              
+            {
+                // Change type to "doughnut", "line", "splineArea", etc.
+                type: "column",
+                name: plotXLabels[analysisParametersCheckedIndex[i]],
+                color: "#69b3a2",
+                dataPoints: data
+            }
+            ]
+        });
+        chart[i].render();
+
+        
+        document.getElementById("tempText").innerHTML = "chart: " + chart.length + "| checkbox: " + analysisParametersCheckedIndex.length;
+    
+    }
+    
+    
+    
+    
+    
+
+    
 }
 
+
+// function plot()
+// {
+// var plotTitles = ["HVAC total supply airflow rate", "HVAC return air fraction", "HVAC filter", "Air cleaner supply CADR", "Upper-room UVGI intensity"];
+// var plotXLabels = ["Airflow rate [m3/h]", "Return air fraction [%]", "Filter", "CADR [m3/h]", "UVGI intensity [/h]"];
+
+// var margin = {top: 40, right: 30, bottom: 70, left: 50},
+//     width = 460 - margin.left - margin.right,
+//     height = 450 - margin.top - margin.bottom;
+// var svg = [];
+// var n = document.getElementById("my_dataviz"); // get how many plots already exist in the container
+
+
+// // document.getElementById("tempText").innerHTML = individuals + '|' + analysisParametersCheckedIndex;
+
+// if (n.childNodes.length<individuals.length)
+// {
+// for (var i=0; i<individuals.length; i++)
+// {
+    
+//     // if (n.childNodes.length>=individuals.length)
+//     // {
+//     //     break; // if already enough plots, exit; avoid repeating plotting
+//     // } 
+
+//     // append the svg object to the body of the page
+//     svg[i] = d3.select("#my_dataviz")
+//     .append("svg")
+//         .attr("width", width + margin.left + margin.right)
+//         .attr("height", height + margin.top + margin.bottom)
+//     .append("g")
+//         .attr("transform",
+//             "translate(" + margin.left + "," + margin.top + ")");
+//     // svg = svgs[i];
+//     svg[i].append("text")
+//         .attr("class", "plotTitle")
+//         .attr("x", (width / 2))             
+//         .attr("y", -20)
+//         .attr("text-anchor", "middle")  
+//         .text(plotTitles[analysisParametersCheckedIndex[i]]);
+//     svg[i].append("text")
+//         .attr("class", "plotLabel")
+//         .attr("x", (width / 2))             
+//         .attr("y", height+40)
+//         .attr("text-anchor", "middle")  
+//         .text(plotXLabels[analysisParametersCheckedIndex[i]]);
+//     svg[i].append("text")
+//         .attr("class", "plotLabel")
+//         .attr("x", 0)             
+//         .attr("y", -20)
+//         .attr("text-anchor", "end")  
+//         .text("Risk [%]");
+
+//     // Parse the Data
+//     // d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/7_OneCatOneNum_header.csv", function(data) {
+
+//     var data = [];
+    
+//     for (var j=0; j<individuals[i].length; j++)
+//     {
+        
+//         var obj = new Object();
+//         if (individuals[i][j] != 0)
+//         {
+//             obj.key = individualsInputs[i][j];
+//             obj.value = individuals[i][j];
+//         }
+//         data.push(obj);
+//     }
+//     document.getElementById("tempText").innerHTML = data.toString();
+//     console.log(data)
+    
+//     // data = [{key: "x", value: 2000},{key: "y", value: 4000},{key: "z", value: 8000}];
+    
+//     // X axis
+//     var x = d3.scaleBand()
+//     .range([ 0, width ])
+//     .domain(data.map(function(d) { return d.key; }))
+//     .padding(0.2);
+//     svg[i].append("g")
+//     .attr("class", "plotAxis")
+//     .attr("transform", "translate(0," + height + ")")
+//     .call(d3.axisBottom(x))
+//     .selectAll("text")
+//         .attr("transform", "translate(0,0)")
+//         .style("text-anchor", "middle");
+
+//     var ydomain = [];
+//     ydomain[0] = 0;
+//     ydomain[1] = Math.max(individuals[i]);
+//     // Add Y axis
+//     var y = d3.scaleLinear()
+//     .domain(ydomain)
+//     .range([ height, 0]);
+//     svg[i].append("g")
+//     .attr("class", "plotAxis")
+//     .call(d3.axisLeft(y))
+//     .selectAll("text")
+//         .style("text-anchor", "end");
+
+//     // Bars
+//     svg[i].selectAll("mybar")
+//     .data(data)
+//     .enter()
+//     .append("rect")
+//         .attr("x", function(d) { return x(d.key); })
+//         .attr("width", x.bandwidth())
+//         .attr("fill", "#69b3a2")
+//         // no bar at the beginning thus:
+//         .attr("height", function(d) { return height - y(0); }) // always equal to 0
+//         .attr("y", function(d) { return y(0); })
+    
+//     // Animation
+//     svg[i].selectAll("rect")
+//     .transition()
+//     .duration(800)
+//     .attr("y", function(d) { return y(d.value); })
+//     .attr("height", function(d) { return height - y(d.value); })
+//     .delay(function(d,i){console.log(i) ; return(i*100)})
+
+//     // })
+
+// }
+
+// }
+// else if (n.childNodes.length > individuals.length)
+// {
+//     var div0 = document.getElementById("my_dataviz");
+//     while (div0.firstChild) {
+//         div0.removeChild(div0.lastChild);
+//     }
+//     // if (div0.firstChild)
+//     // {
+//     //     div0.removeChild(div0.firstChild)
+//     // }
+// }
+
+// }
 
 var strategies = 0;
 var s = document.getElementsByName("strategy");
@@ -451,8 +1089,9 @@ function addStrategy()
         strategies+=1;
     }
     showStrategyAnalysis();
-    
 }
+
+
 
 function deleteStrategy()
 {
