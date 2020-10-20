@@ -644,11 +644,6 @@ function Calculate() {
         // analysisParametersUnchecked[0].disabled = false;
     }
     
-    function paraAnalysis()
-    {
-
-    }
-
     
     for (var i = 0; i<analysisParametersCheckedIndex.length; i++)
     {
@@ -808,7 +803,7 @@ function Calculate() {
     // document.getElementById("tempText").innerHTML = individuals;
     
     
-    plot();
+    // plot();
 
     
 
@@ -836,6 +831,60 @@ function Calculate() {
 ,100);
 
 
+// function plot()
+// {
+//     var plotTitles = ["HVAC total supply airflow rate", "HVAC return air fraction", "HVAC filter", "Air cleaner supply CADR", "Upper-room UVGI intensity"];
+//     var plotXLabels = ["Airflow rate [m3/h]", "Return air fraction [%]", "Filter", "CADR [m3/h]", "UVGI intensity [/h]"];
+//     var chart = [];
+//     for (var i = 0; i<individuals.length;i++)
+//     {
+//         var data = [];
+//         for (var j=0; j<individuals[i].length; j++)
+//         {
+//             if ((individualsInputs[i][j]) != "" && individualsInputs[i][j] != "none")
+//             {
+//                 var obj = new Object();
+//                 obj.label = individualsInputs[i][j];
+//                 obj.y = parseFloat(individuals[i][j]);
+//                 data.push(obj);
+//             }
+//         }
+//         var plotContainer = document.getElementById("plotContainer");
+//         plotContainer.children[i].style.height = "300px";
+//         plotContainer.children[i].style.width = "100%";
+//         // chartIndex[i] = analysisParametersCheckedIndex[i];
+//         chart[i] = new CanvasJS.Chart(plotContainer.children[i].id, {
+//             title:{
+//                 text: plotTitles[analysisParametersCheckedIndex[i]]              
+//             },
+//             axisX:{
+//                 // interlacedColor: "rgba(1,77,101,.2)",
+//                 // gridColor: "rgba(1,77,101,.1)",
+//                 title: plotXLabels[analysisParametersCheckedIndex[i]] 
+//             },
+//             axisY:{
+//                 // interlacedColor: "rgba(1,77,101,.2)",
+//                 gridColor: "rgba(1,77,101,.1)",
+//                 title: "Risk [%]"
+//             },
+//             data: [              
+//             {
+//                 // Change type to "doughnut", "line", "splineArea", etc.
+//                 type: "column",
+//                 name: plotXLabels[analysisParametersCheckedIndex[i]],
+//                 color: "#69b3a2",
+//                 dataPoints: data
+//             }
+//             ]
+//         });
+//         chart[i].render();
+//         // document.getElementById("tempText").innerHTML = "chart: " + chart.length + "| checkbox: " + analysisParametersCheckedIndex.length;
+//     }
+// }
+
+
+
+
 // var width = 300;
 //     var height = 300;
 //     var svg = d3.select("#svgcontainer")
@@ -852,77 +901,6 @@ function Calculate() {
 
 //     const chart = svg.append('g')
 //     .attr('transform', `translate(${margin}, ${margin})`);
-
-function plot()
-{
-    var plotTitles = ["HVAC total supply airflow rate", "HVAC return air fraction", "HVAC filter", "Air cleaner supply CADR", "Upper-room UVGI intensity"];
-    var plotXLabels = ["Airflow rate [m3/h]", "Return air fraction [%]", "Filter", "CADR [m3/h]", "UVGI intensity [/h]"];
-    // document.getElementById("tempText").innerHTML = "test";
-    // var n = 0;
-    var chart = [];
-    // var chartIndex = [];
-    // document.getElementById("tempText").innerHTML = "chart: " + chart.length + "| checkbox: " + analysisParametersCheckedIndex.length;
-
-
-    for (var i = 0; i<individuals.length;i++)
-    {
-        var data = [];
-    
-        for (var j=0; j<individuals[i].length; j++)
-        {
-            
-            
-            if ((individualsInputs[i][j]) != "" && individualsInputs[i][j] != "none")
-            {
-                var obj = new Object();
-                obj.label = individualsInputs[i][j];
-                obj.y = parseFloat(individuals[i][j]);
-                data.push(obj);
-            }
-            
-        }
-        
-        
-
-        var plotContainer = document.getElementById("plotContainer");
-        plotContainer.children[i].style.height = "300px";
-        plotContainer.children[i].style.width = "100%";
-
-        // chartIndex[i] = analysisParametersCheckedIndex[i];
-
-        chart[i] = new CanvasJS.Chart(plotContainer.children[i].id, {
-            title:{
-                text: plotTitles[analysisParametersCheckedIndex[i]]              
-            },
-            axisX:{
-                // interlacedColor: "rgba(1,77,101,.2)",
-                // gridColor: "rgba(1,77,101,.1)",
-                title: plotXLabels[analysisParametersCheckedIndex[i]] 
-            },
-            axisY:{
-                // interlacedColor: "rgba(1,77,101,.2)",
-                gridColor: "rgba(1,77,101,.1)",
-                title: "Risk [%]"
-            },
-            data: [              
-            {
-                // Change type to "doughnut", "line", "splineArea", etc.
-                type: "column",
-                name: plotXLabels[analysisParametersCheckedIndex[i]],
-                color: "#69b3a2",
-                dataPoints: data
-            }
-            ]
-        });
-        chart[i].render();
-
-        
-        // document.getElementById("tempText").innerHTML = "chart: " + chart.length + "| checkbox: " + analysisParametersCheckedIndex.length;
-    
-    }
-    
-}
-
 
 // function plot()
 // {
