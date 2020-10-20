@@ -620,7 +620,7 @@ function Calculate() {
     // var analysisParametersLabelsChecked = [];
     var analysisParametersLabelsUnchecked = [];
     for (var i=0;i<analysisParameters.length;i++){
-        if ( analysisParameters[i].checked ) {
+        if ( true ) {
             analysisParametersChecked.push(analysisParameters[i]);
             analysisParametersCheckedIndex.push(i);
         }
@@ -669,14 +669,14 @@ function Calculate() {
                 var priskUnsteady = 1 - Math.exp(-1 * infector * quanta * inhalation * (1 - maskEff1) * (1 - maskEff2) / roomVolumn*((peqACH*duration + Math.exp(-1*duration*peqACH)-1)/peqACH**2));
                 priskUnsteady = 100*priskUnsteady;
                 priskUnsteady = priskUnsteady.toFixed(3);
-                if (individuals[i][j]==0)
-                {
-                    individuals[i][j] = 0;
-                }
-                else
-                {
+                // if (individuals[i][j]==0)
+                // {
+                //     individuals[i][j] = 0;
+                // }
+                // else
+                // {
                     individuals[i][j] = prisk;
-                }
+                // }
                 
             }
 
@@ -700,14 +700,14 @@ function Calculate() {
                 priskUnsteady = 100*priskUnsteady;
                 priskUnsteady = priskUnsteady.toFixed(3);
 
-                if (individuals[i][j]==0)
-                {
-                    individuals[i][j] = 0;
-                }
-                else
-                {
+                // if (individuals[i][j]==0)
+                // {
+                //     individuals[i][j] = 0;
+                // }
+                // else
+                // {
                     individuals[i][j] = prisk;
-                }
+                // }
                 
             }
         }
@@ -762,14 +762,14 @@ function Calculate() {
                 priskUnsteady = 100*priskUnsteady;
                 priskUnsteady = priskUnsteady.toFixed(3);
 
-                if (individuals[i][j]==0)
-                {
-                    individuals[i][j] = 0;
-                }
-                else
-                {
+                // if (individuals[i][j]==0)
+                // {
+                //     individuals[i][j] = 0;
+                // }
+                // else
+                // {
                     individuals[i][j] = prisk;
-                }
+                // }
                 
             }
         }
@@ -793,19 +793,21 @@ function Calculate() {
                 priskUnsteady = 100*priskUnsteady;
                 priskUnsteady = priskUnsteady.toFixed(3);
 
-                if (individuals[i][j]==0)
-                {
-                    individuals[i][j] = 0;
-                }
-                else
-                {
+                // if (individuals[i][j]==0)
+                // {
+                //     individuals[i][j] = 0;
+                // }
+                // else
+                // {
                     individuals[i][j] = prisk;
-                }
+                // }
                 
             }
         }
     }
     // document.getElementById("tempText").innerHTML = individuals;
+    
+    
     plot();
 
     
@@ -856,23 +858,11 @@ function plot()
     var plotTitles = ["HVAC total supply airflow rate", "HVAC return air fraction", "HVAC filter", "Air cleaner supply CADR", "Upper-room UVGI intensity"];
     var plotXLabels = ["Airflow rate [m3/h]", "Return air fraction [%]", "Filter", "CADR [m3/h]", "UVGI intensity [/h]"];
     // document.getElementById("tempText").innerHTML = "test";
-    var n = 0;
+    // var n = 0;
     var chart = [];
-    var chartIndex = [];
+    // var chartIndex = [];
     // document.getElementById("tempText").innerHTML = "chart: " + chart.length + "| checkbox: " + analysisParametersCheckedIndex.length;
-    if (chart.length != analysisParametersCheckedIndex.length)
-    {
-        var plotContainer = document.getElementById("plotContainer");
-        for (var k =0; k< chart.length;k++)
-        {
-            chart[k].destroy();
-            
-        plotContainer.children[k].style.height = "0";
-        plotContainer.children[k].style.width = "0";
-        }
-        chart = [];
 
-    }
 
     for (var i = 0; i<individuals.length;i++)
     {
@@ -882,7 +872,7 @@ function plot()
         {
             
             
-            if (parseFloat(individualsInputs[i][j]) != 0 && individualsInputs[i][j] != "none")
+            if ((individualsInputs[i][j]) != "" && individualsInputs[i][j] != "none")
             {
                 var obj = new Object();
                 obj.label = individualsInputs[i][j];
@@ -898,7 +888,7 @@ function plot()
         plotContainer.children[i].style.height = "300px";
         plotContainer.children[i].style.width = "100%";
 
-        chartIndex[i] = analysisParametersCheckedIndex[i];
+        // chartIndex[i] = analysisParametersCheckedIndex[i];
 
         chart[i] = new CanvasJS.Chart(plotContainer.children[i].id, {
             title:{
@@ -927,15 +917,9 @@ function plot()
         chart[i].render();
 
         
-        document.getElementById("tempText").innerHTML = "chart: " + chart.length + "| checkbox: " + analysisParametersCheckedIndex.length;
+        // document.getElementById("tempText").innerHTML = "chart: " + chart.length + "| checkbox: " + analysisParametersCheckedIndex.length;
     
     }
-    
-    
-    
-    
-    
-
     
 }
 
