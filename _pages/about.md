@@ -34,12 +34,12 @@ I am actively seeking academic positions that align with my expertise in buildin
 
 ## My Research
 
-Multizone indoor air quality (IAQ) and ventilation analysis tool development
+### Multizone indoor air quality (IAQ) and ventilation analysis tool development
 ------
 ANT: CONTAM plugin on Rhino Grasshopper [Link>>](https://www.food4rhino.com/en/app/ant)
 ![ANT structure](../images/structure.png)
 
-COVID-19 and Indoor Air Quality
+### COVID-19 and Indoor Air Quality
 ------
 
 COVID-19 indoor airborne transmission and control strategies
@@ -61,7 +61,7 @@ Aerosol and droplet distribution in an office with displacement ventilation
 Exhaled aerosol transmission in a large banquet room with mixing ventilation
 ![cfd-mv](../images/cfd-mv-1.png)
 
-Air cleaning technology testing
+### Air cleaning technology
 ------
 Chamber testing for in-duct ionizers
 ![chamber-test-1](../images/chamber-test-1.jpg)
@@ -70,7 +70,7 @@ Chamber testing for in-duct ionizers
 Field testing for in-duct ionizers
 ![covid-field](../images/covid-field-2.png)
 
-Indoor ozone and fine particle exposure and chemistry
+### Indoor ozone and fine particle exposure and chemistry
 ------
 Ozone surface deposition mechanism and database for typical building materials [Link>>](http://www.jialeishen.com/publication/journal-5)
 ![ozone-deposition](../images/journal-5-abstract.jpg)
@@ -95,7 +95,7 @@ Artificial neural network (ANN) modeling for estimating outdoor ozone concentrat
 Indoor ozone level estimator [Link>>](https://github.com/jialeishen/Indoor-Air-Assistant)
 ![in-air-app](../images/in-air-app-2.png)
 
-Building performance simulation and optimization
+### Building performance simulation and optimization
 ------
 Module-based building whole performance simulation tool development (energy, IAQ, thermal comfort, lighting etc.)
 ![gds-1](../images/GDS_gh_ui.PNG)
@@ -108,7 +108,7 @@ Green building strategy performance assessment [Link>>](http://www.jialeishen.co
 User-interactive building perofrmance visualization in Virtual Reality (VR) [Link>>](http://www.jialeishen.com/publication/journal-9)
 ![gds-1](../images/gds-vr.png)
 
-Urban microenvironment 
+### Urban microenvironment 
 ------
 Commuting exposure to fine particles in different transportation modes (In-Situ measurements) [Link>>](http://www.jialeishen.com/publication/journal-7)
 ![commuting](../images/commuting.jpg)
