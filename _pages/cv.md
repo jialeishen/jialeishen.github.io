@@ -135,6 +135,6 @@ Professional Services
     * *Indoor and Built Environment*
     * *Air Quality, Atmosphere & Health*, etc.
   * Conferences
-    * *ASHRAE conferences (2023, 2024)*
-    * *IBPSA-USA SimBuild 2024*, etc.
+    * ASHRAE conferences (2023, 2024)
+    * IBPSA-USA SimBuild 2024, etc.
 * ASHRAE Syracuse University Student Branch, Member & Vice president, 2019 - 2022
