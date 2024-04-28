@@ -14,7 +14,7 @@ name                     : &name "Jialei Shen"
 description              : &description "Postdoctoral Research Associate at NIST"
 url                      : https://www.jialeishen.com # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
-repository               : "jialeishen.github.io"
+repository               : "jialeishen/jialeishen.github.io"
 
 # Site Author - The following control what appear as part of the author content on the side bar.
 #               If a field is blank the icon and link will not appear, otherwise it will be shown.
