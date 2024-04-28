@@ -21,8 +21,8 @@ My academic contributions to these areas are documented in one book chapter, 17 
 
 I am actively seeking academic positions that align with my expertise in building energy and environmental systems, hoping to further contribute to the field through both research and teaching.
 
-### Recent News 
-======
+## Recent News 
+
 (latest 1 year)
 * August 21, 2023: First beta version of ANT (CONTAM plugin on Rhino Grasshopper) was published on Food4Rhino. [Link>>](https://www.food4rhino.com/en/app/ant)
 <!--* Oct 1, 2022: Joined the IAQ & Ventilation Group at NIST as a Postdoctoral Research Associate. [Link>>](https://www.nist.gov/people/jialei-shen)-->
@@ -32,8 +32,7 @@ I am actively seeking academic positions that align with my expertise in buildin
 <!--* Jun 16, 2022: Presentation at Indoor Air 2022. [Link>>](http://www.jialeishen.com/talks/2022-ia2022)-->
 <!--* Jan 18, 2022: Presentation at Healthy Buildings 2021 America virtual conference. [Link>>](http://www.jialeishen.com/talks/2021-hb2021)-->
 
-### My Research
-======
+## My Research
 
 Multizone indoor air quality (IAQ) and ventilation analysis tool development
 ------
