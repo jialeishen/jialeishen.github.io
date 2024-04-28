@@ -53,7 +53,6 @@ Research experience
 * 2015-2018: **Research Assistant**, Advisor: Zhi Gao
 
   Nanjing University  |  School of Architecture
-
   * Urban environment and urban microclimate (sponsored by National Natural Science Foundation of China (NSFC))
   * Residential building ventilation and indoor air quality strategies (sponsored by NSFC) 
   * Air pollutant exposure in transportation environments
