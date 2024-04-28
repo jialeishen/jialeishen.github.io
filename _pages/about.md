@@ -37,7 +37,7 @@ I am actively seeking academic positions that align with my expertise in buildin
 ### Multizone indoor air quality (IAQ) and ventilation analysis tool development
 ------
 ANT: CONTAM plugin on Rhino Grasshopper [Link>>](https://www.food4rhino.com/en/app/ant)
-![ANT structure](../images/structure.png)
+![ANT structure](../images/ant-structure.png)
 
 ### COVID-19 and Indoor Air Quality
 ------
