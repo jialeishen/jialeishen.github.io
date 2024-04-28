@@ -11,7 +11,7 @@ redirect_from:
 
 [Download CV](http://jialeishen.github.io/files/CV_Jialei_Shen_20240422.pdf)
 
-Research interests
+Research Interests
 ======
 * Healthy buildings and indoor air quality (IAQ)
 * City-scale indoor air quality (IAQ) and health analysis
@@ -26,7 +26,7 @@ Education
 * B.S., Mechanical Engineering, Xi’an Jiaotong University, Xi’an, China, 2015
 
 
-Research experience
+Research Experience
 ======
 * 2022-2023: **Postdoctoral Research Associate**, Advisor: Stuart Dols
   
@@ -58,7 +58,7 @@ Research experience
   * Air pollutant exposure in transportation environments
 
 
-Teaching experience
+Teaching Experience
 ======
 * **Teaching Assistant**
 
@@ -79,7 +79,7 @@ Teaching experience
   Washington State University
   * ARCH 531 - Advanced Tectonics (part of the [WSU Energy Conscious Construction](https://sdc.wsu.edu/energy-conscious-construction/) certificate program), 2024
 
-Grants and fellowships
+Grants & Fellowships
 ======
 * 2018 - 2022: Graduate Fellowship
   * Syracuse University
@@ -112,7 +112,7 @@ Talks
     {% include archive-single-cv.html %}
   {% endfor %}</ul> -->
 
-Professional affiliations
+Professional Affiliations
 ======
 * American Society of Heating, Refrigerating and Air-Conditioning Engineers ([ASHRAE](https://www.ashrae.org/)), Member
   * Corresponding member of [TC 4.10 Indoor Environmental Modeling](https://tpc.ashrae.org/?cmtKey=c0400881-c0a1-46d3-aa4f-9a7e9be33635)
@@ -122,9 +122,9 @@ Professional affiliations
 * Association for Computer Aided Design in Architecture ([ACADIA](http://acadia.org/)), Member
 
 
-Professional services
+Professional Services
 ======
-* Manuscript/Report reviewer
+* Manuscript/Report Reviewer
   * Journals
     * *Building and Environment*
     * *Building Simulation*
