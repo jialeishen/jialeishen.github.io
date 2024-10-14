@@ -8,7 +8,7 @@
     - name: Affiliation
       value: University of Alabama at Birmingham
     - name: Email
-      value: shenj@uab.edu
+      value: <a href="mailto:shenj@uab.edu">shenj@uab.edu</a>
 
 - title: Education
   type: time_table
