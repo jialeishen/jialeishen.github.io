@@ -1,8 +1,15 @@
 ---
 layout: post
-date: 2016-01-15 07:59:00-0400
-inline: true
+title: Interview on WCNY TV Show - Cycle of Health
+date: 2022-08-25
+inline: false
 related_posts: false
 ---
 
-A simple inline announcement with Markdown emoji! :sparkles: :smile:
+Researchers from the Building Energy and Environmental Systems (BEES) Lab at Syracuse University were interviewed on Episode 8 of Season 14 of the WCNY TV show *Cycle of Health*, discussing the topic *[Improving the Elements](https://video.wcny.org/video/improving-the-elements-vhe03q/)*.
+
+*Cycle of Health* is a local public TV program presented by [WCNY](http://www.wcny.org/), a PBS member TV station in Syracuse, NY.
+
+Watch the full episode:
+
+<iframe width="770" height="500" src="https://player.pbs.org/viralplayer/3070931305/" allowfullscreen allow="encrypted-media" style="border: 0;"></iframe>
