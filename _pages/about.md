@@ -6,7 +6,7 @@ subtitle: <b>Assistant Professor</b>. Civil, Construction and Environmental Engi
 
 profile:
   align: right
-  image: prof_pic_small.jpg
+  image: prof_pic.jpg
   image_circular: false # crops the image to make it circular
   more_info: >
     <p>Hoehn Building, Room 210C</p>
