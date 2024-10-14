@@ -122,10 +122,6 @@
 - title: Publications
   type: time_table
   contents:
-      {% include bib_search.liquid %}
-      <div class="publications">
-      {% bibliography %}
-      </div>
 
 
 - title: Academic Interests
