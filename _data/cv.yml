@@ -5,7 +5,11 @@
       value: Jialei Shen
     - name: Title
       value: Assistant Professor
-    - name: Affiliation
+    - name: Department
+      value: 
+        - Civil, Construction, and Environmental Engineering
+        - Environmental Health Sciences
+    - name: Institution
       value: University of Alabama at Birmingham
     - name: Email
       value: <a href="mailto:shenj@uab.edu">shenj@uab.edu</a>
@@ -26,7 +30,7 @@
       year: 2015
       description: Mechanical Engineering
 
-- title: Experience
+- title: Professional Experience
   type: time_table
   contents:
     - title: Assistant Professor
@@ -41,18 +45,9 @@
       year: 2022 - 2024
       description:
         - Building Energy and Environment Division, Engineering Laboratory.
-
-    - title: Postdoctoral Research Associate
       institution: University of Maryland, College Park
-      year: 2022 - 2024
       description:
         - Chemistry and Biochemistry, College of Computer, Mathematical, and Natural Sciences <i>(PREP program with NIST)</i>.
-
-    - title: Research Assistant
-      institution: Syracuse University
-      year: 2018 - 2022
-      description:
-        - Mechanical and Aerospace Engineering, College of Engineering and Computer Science.
 
 - title: Teaching Experience
   type: time_table
@@ -61,39 +56,17 @@
       institution: University of Alabama at Birmingham
       year: Spring 2025
       description:
-        - CESC 614: Smart Cities Technologies
-    
-    - title: Course Juror
-      institution: Washington State University
-      year: Spring 2024
-      description:
-        - ARCH 531: Advanced Tectonics
-    
-    - title: Guest Lecturer
-      institution: University of Maryland, College Park
-      year: Fall 2023
-      description:
-        - ENME 422: Indoor Environment and Mechanical Systems
+        - CESC 614, Smart Cities Technologies
 
-    - title: Guest Lecturer
-      institution: Syracuse University
-      year: Spring 2022
-      description:
-        - MAE 658: Building Environmental Modeling and Simulations
-    
-    - title: Teaching Assistant
-      institution: Syracuse University
-      year: Spring 2020
-      description:
-        - ECS 104: Engineering Computational Tools
+- title: Grants, Projects & Fellowships
+  type: time_table
+  contents:
+    - year: 2024 - 2028
+      items:
+        - <b>IEA-EBC Annex 92</b>, Smart Materials for Energy-Efficient Heating, Cooling and IAQ Control in Residential Buildings <i>(Participant)</i>.
+        
 
-    - title: Teaching Assistant
-      institution: Syracuse University
-      year: Fall 2021, 2019
-      description:
-        - MEE 416: Mechanical Engineering Laboratory 
-
-- title: Awards and Honors
+- title: Awards & Honors
   type: time_table
   contents:
     - year: 2024
@@ -127,14 +100,20 @@
 - title: Academic Interests
   type: nested_list
   contents:
-    - title: Topic 1.
+    - title: Air quality, human health, and sustainability in urban and built environments.
       items:
-        - Description 1.
-        - Description 2.
-    - title: Topic 2.
-      items:
-        - Description 1.
-        - Description 2.
+        - Indoor air quality.
+        - Building energy and environment.
+        - Environmental health.
+        - Personal exposure assessment and control.
+        - Airborne infectious diseases.
+        - Air quality sensing and monitoring.
+        - Air cleaning technologies.
+        - Building simulation.
+        - Urban microclimate.
+        - Computational fluid dynamics (CFD).
+        - HVAC systems.
+        - Smart buildings and cities.
 
 - title: Other Interests
   type: list
