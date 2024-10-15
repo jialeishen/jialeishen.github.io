@@ -3,7 +3,7 @@ layout: page
 permalink: /repositories/
 title: repositories
 description: The major repositories of <a href='https://github.com/jialeishen'><b>my GitHub</b></a>.
-nav: true
+nav: false
 nav_order: 4
 ---
 

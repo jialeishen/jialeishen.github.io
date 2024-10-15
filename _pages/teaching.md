@@ -4,7 +4,7 @@ permalink: /teaching/
 title: teaching
 description: My teaching activities.
 nav: true
-nav_order: 5
+nav_order: 3
 ---
 
 ## University of Alabama at Birmingham
