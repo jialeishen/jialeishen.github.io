@@ -11,6 +11,6 @@ children:
     permalink: /publications/
   - title: software
     permalink: /repositories/
-  - title: openings
-    permalink: /openings/
+  #- title: openings
+  #  permalink: /openings/
 ---
