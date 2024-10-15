@@ -4,7 +4,7 @@ permalink: /repositories/
 title: repositories
 description: The major repositories of <a href='https://github.com/jialeishen'><b>my GitHub</b></a>.
 nav: false
-nav_order: 4
+nav_order: 3
 ---
 
 {% if site.data.repositories.github_users %}

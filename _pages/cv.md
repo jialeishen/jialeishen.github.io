@@ -3,7 +3,7 @@ layout: cv
 permalink: /cv/
 title: cv
 nav: true
-nav_order: 6
+nav_order: 4
 cv_pdf: CV_Jialei_Shen.pdf
 description:
 toc:
