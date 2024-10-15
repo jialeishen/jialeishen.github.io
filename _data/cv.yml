@@ -149,11 +149,11 @@
     - title: Professional Community Participation
       items:
         - <b>American Society of Heating, Refrigerating and Air-Conditioning Engineers (ASHRAE)</b>, Member.
-        subitems:
+        #subitems:
           - Member of Technical Committee 4.10, Indoor Environmental Modeling.
           - Member of Technical Committee 4.3, Ventilation Requirements and Infiltration.
         - <b>International Building Performance Simulation Association (IBPSA)</b>, Member.
-        subitems:
+        #subitems:
           - Member of Membership and Chapters Committee of IBPSA-USA.
         - <b>International Society of Indoor Air Quality and Climate (ISIAQ)</b>, Member.
     - title: Peer Reviewer
