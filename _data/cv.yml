@@ -6,10 +6,7 @@
     - name: Title
       value: Assistant Professor
     - name: Department
-      value: 
-        items:
-          - Civil, Construction, and Environmental Engineering
-          - Environmental Health Sciences
+      value: Civil, Construction, and Environmental Engineering | Environmental Health Sciences
     - name: Institution
       value: University of Alabama at Birmingham
     - name: Email
@@ -37,14 +34,15 @@
     - title: Assistant Professor
       institution: University of Alabama at Birmingham (UAB)
       year: 2024 - Present
-      description: Civil, Construction, and Environmental Engineerin, School of Engineering.<br>Environmental Health Sciences, School of Public Health.
+      description: 
+        - Civil, Construction, and Environmental Engineerin, School of Engineering.
+        - Environmental Health Sciences, School of Public Health.
 
     - title: Postdoctoral Research Associate
       institution: National Institute of Standards and Technology (NIST)
       year: 2022 - 2024
       description:
         - Building Energy and Environment Division, Engineering Laboratory.
-        - Through the PREP program with the University of Maryland.
 
 - title: Teaching Experience
   type: time_table
@@ -149,24 +147,29 @@
     - title: Professional Community Participation
       items:
         - <b>American Society of Heating, Refrigerating and Air-Conditioning Engineers (ASHRAE)</b>, Member.
-        #subitems:
-        - Member of Technical Committee 4.10, Indoor Environmental Modeling.
-        - Member of Technical Committee 4.3, Ventilation Requirements and Infiltration.
+        contents:
+          - Member of Technical Committee 4.10, Indoor Environmental Modeling.
+          - Member of Technical Committee 4.3, Ventilation Requirements and Infiltration.
         - <b>International Building Performance Simulation Association (IBPSA)</b>, Member.
-        #subitems:
-        - Member of Membership and Chapters Committee of IBPSA-USA.
+        contents:
+          - Member of Membership and Chapters Committee of IBPSA-USA.
         - <b>International Society of Indoor Air Quality and Climate (ISIAQ)</b>, Member.
     - title: Peer Reviewer
       items: 
-        - Building and Environment.
-        - Building Simulation.
-        - Indoor Environments.
-        - Journal of Hazardous Materials.
-        - Sustainable Cities and Society.
-        - Science and Technology for the Built Environment.
-        - Journal of Building Engineering.
-        - International Journal of Ventilation.
-        - Indoor and Built Environment.
-        - Air Quality, Atmosphere & Health.
-        - ASHRAE conferences (2023, 2024, 2025).
-        - IBPSA conferences (SimBuild 2024).
+        contents:
+          - title: Journals
+            items:
+              - Building and Environment.
+              - Building Simulation.
+              - Indoor Environments.
+              - Journal of Hazardous Materials.
+              - Sustainable Cities and Society.
+              - Science and Technology for the Built Environment.
+              - Journal of Building Engineering.
+              - International Journal of Ventilation.
+              - Indoor and Built Environment.
+              - Air Quality, Atmosphere & Health.
+          - title: Conferences
+            items:
+              - ASHRAE conferences (2023, 2024, 2025).
+              - IBPSA conferences (SimBuild 2024).
