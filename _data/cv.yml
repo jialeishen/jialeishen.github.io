@@ -147,29 +147,19 @@
     - title: Professional Community Participation
       items:
         - <b>American Society of Heating, Refrigerating and Air-Conditioning Engineers (ASHRAE)</b>, Member.
-        contents:
-          - Member of Technical Committee 4.10, Indoor Environmental Modeling.
-          - Member of Technical Committee 4.3, Ventilation Requirements and Infiltration.
         - <b>International Building Performance Simulation Association (IBPSA)</b>, Member.
-        contents:
-          - Member of Membership and Chapters Committee of IBPSA-USA.
         - <b>International Society of Indoor Air Quality and Climate (ISIAQ)</b>, Member.
     - title: Peer Reviewer
       items: 
-        contents:
-          - title: Journals
-            items:
-              - Building and Environment.
-              - Building Simulation.
-              - Indoor Environments.
-              - Journal of Hazardous Materials.
-              - Sustainable Cities and Society.
-              - Science and Technology for the Built Environment.
-              - Journal of Building Engineering.
-              - International Journal of Ventilation.
-              - Indoor and Built Environment.
-              - Air Quality, Atmosphere & Health.
-          - title: Conferences
-            items:
-              - ASHRAE conferences (2023, 2024, 2025).
-              - IBPSA conferences (SimBuild 2024).
+        - Building and Environment.
+        - Building Simulation.
+        - Indoor Environments.
+        - Journal of Hazardous Materials.
+        - Sustainable Cities and Society.
+        - Science and Technology for the Built Environment.
+        - Journal of Building Engineering.
+        - International Journal of Ventilation.
+        - Indoor and Built Environment.
+        - Air Quality, Atmosphere & Health.
+        - ASHRAE conferences (2023, 2024, 2025).
+        - IBPSA conferences (SimBuild 2024).
