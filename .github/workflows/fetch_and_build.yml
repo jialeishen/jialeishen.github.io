@@ -12,7 +12,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v3
 
     - name: Print current directory
       run: pwd
@@ -47,11 +47,19 @@ jobs:
       run: pip3 install --upgrade jupyter
 
     - name: Build Jekyll site
-      run: bundle exec jekyll build
+      run: bundle exec jekyll build --trace
 
-    
     - name: List files after Jekyll build
-      run: ls -la _site
+      run: ls -la
 
-    - name: Display built markdown content
-      run: cat _site/_includes/md/ANT_Intro.md
+    - name: Find ANT_Intro.md in the project directory
+      run: find . -name ANT_Intro.md
+
+    - name: Display built markdown content if exists
+      run: |
+        FILE=$(find . -name ANT_Intro.md)
+        if [ -f "$FILE" ]; then
+          cat "$FILE"
+        else
+          echo "ANT_Intro.md not found in the project directory."
+        fi
