@@ -7,7 +7,7 @@ nav: false
 nav_order: 3
 ---
 
-<!-- show the projects with a category of "software" from _projects -->
+<!-- Display the projects with a category of "software" -->
 
 {% assign software_projects = site.projects | where: "category", "software" %}
 
@@ -35,6 +35,7 @@ nav_order: 3
   </div>
   {% endif %}
 </div>
+{% endif %}
 
 {% if site.data.repositories.github_users %}
 
