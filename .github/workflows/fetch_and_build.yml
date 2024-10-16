@@ -29,6 +29,9 @@ jobs:
     - name: List files after fetching markdown
       run: ls -la _includes/md
 
+    - name: Display fetched markdown content
+      run: cat _includes/md/ANT_Intro.md
+
     - name: Setup Ruby
       uses: ruby/setup-ruby@v1
       with:
@@ -45,3 +48,10 @@ jobs:
 
     - name: Build Jekyll site
       run: bundle exec jekyll build
+
+    
+    - name: List files after Jekyll build
+      run: ls -la _site
+
+    - name: Display built markdown content
+      run: cat _site/_includes/md/ANT_Intro.md
