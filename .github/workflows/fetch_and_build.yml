@@ -23,6 +23,9 @@ jobs:
     - name: Make fetch script executable
       run: chmod +x ./fetch_remote_md.sh
 
+    - name: Clean _includes/md directory
+      run: rm -rf _includes/md && mkdir -p _includes/md
+
     - name: Fetch remote markdown file
       run: ./fetch_remote_md.sh
 
