@@ -4,8 +4,7 @@ github_users:
 repo_description_lines_max: 2
 
 github_repos:
-  - jialeishen/UDF-of-Urban-Microclimate
-  - jialeishen/UDF-Formaldehyde-Adsorption
   - jialeishen/CONTAM-ANT
   - jialeishen/Building-Performance-Estimator
-  - jialeishen/ANSYS-Fluent-TUI-Script
+  - jialeishen/UDF-of-Urban-Microclimate
+  - jialeishen/UDF-Formaldehyde-Adsorption
