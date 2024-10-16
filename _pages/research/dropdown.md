@@ -5,8 +5,8 @@ nav: true
 nav_order: 2
 dropdown: true
 children:
-  - title: projects
-    permalink: /projects/
+  #- title: projects
+  #  permalink: /projects/
   - title: publications
     permalink: /publications/
   - title: software

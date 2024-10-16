@@ -113,10 +113,6 @@
       items:
         - <b>Excellent Student Honor</b>, Xi'an Jiaotong University.
 
-- title: Publications
-  type: time_table
-  contents:
-
 - title: Academic Interests
   type: nested_list
   contents:
