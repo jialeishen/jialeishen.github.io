@@ -34,7 +34,6 @@ nav_order: 3
     {% endfor %}
   </div>
   {% endif %}
-  {% endfor %}
 </div>
 
 {% if site.data.repositories.github_users %}
