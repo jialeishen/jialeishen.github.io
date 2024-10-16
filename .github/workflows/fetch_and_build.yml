@@ -40,5 +40,13 @@ jobs:
     - name: Install dependencies
       run: bundle install
 
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install Jupyter
+      run: pip3 install --upgrade jupyter
+
     - name: Build Jekyll site
       run: bundle exec jekyll build
