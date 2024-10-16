@@ -10,4 +10,4 @@ related_publications: true
 
 **ANT is free on [Food4Rhino](https://www.food4rhino.com/en/app/ant).**
 
-{% include https://raw.githubusercontent.com/jialeishen/CONTAM-ANT/main/README.md %}
+{% include md/ANT_Intro.md %}

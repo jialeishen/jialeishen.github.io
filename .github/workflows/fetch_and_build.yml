@@ -1,0 +1,20 @@
+name: Fetch Remote Markdown and Build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Fetch remote markdown file
+      run: ././fetch_remote_md.sh
+
+    - name: Build Jekyll site
+      run: bundle exec jekyll build
