@@ -18,3 +18,15 @@ else
   echo "Failed to fetch the file."
   exit 1
 fi
+
+# Verify the file was written correctly
+echo "Verifying the contents of $LOCAL_MD_PATH:"
+cat $LOCAL_MD_PATH
+
+# List the directory contents to verify the file update
+echo "Listing contents of _includes/md directory:"
+ls -la _includes/md
+
+# Check file permissions
+echo "Checking file permissions for $LOCAL_MD_PATH:"
+ls -l $LOCAL_MD_PATH
