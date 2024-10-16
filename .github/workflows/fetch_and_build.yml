@@ -3,6 +3,7 @@ name: Fetch Remote Markdown and Build
 on:
   push:
     branches:
+      - master
       - main
 
 jobs:
@@ -13,8 +14,20 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+    - name: Print current directory
+      run: pwd
+
+    - name: List files in the repository
+      run: ls -la
+
+    - name: Make fetch script executable
+      run: chmod +x ./fetch_remote_md.sh
+
     - name: Fetch remote markdown file
-      run: ././fetch_remote_md.sh
+      run: ./fetch_remote_md.sh
+
+    - name: List files after fetching markdown
+      run: ls -la _includes/md
 
     - name: Build Jekyll site
       run: bundle exec jekyll build
