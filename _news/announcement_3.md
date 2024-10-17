@@ -12,4 +12,4 @@ Researchers from the Building Energy and Environmental Systems (BEES) Lab at Syr
 
 Watch the full episode:
 
-<iframe src="https://player.pbs.org/viralplayer/3070931305/" allowfullscreen allow="encrypted-media" style="border: 0;"></iframe>
+<iframe src="https://player.pbs.org/viralplayer/3070931305/" allowfullscreen allow="encrypted-media" style="width:100%; height:auto; border: 0;"></iframe>
